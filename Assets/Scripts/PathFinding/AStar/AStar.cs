@@ -17,8 +17,6 @@ namespace PathFinding.AStar
         
         public IEnumerator FindPath(Vector2 startPosition, Vector2 endPosition, Grid grid)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
             grid.ResetNodes();
             Node startNode = grid.NodeFromWorldPosition(startPosition);
             Node targetNode = grid.NodeFromWorldPosition(endPosition);
@@ -27,45 +25,47 @@ namespace PathFinding.AStar
             HashSet<Node> closedSet = new HashSet<Node>();
             openSet.Add(startNode);
 
-            List<Node> pathToTarget = null;
-
-            while (openSet.Count > 0)
-            {
-                Node currentNode = openSet.RemoveFirstItem();
-                closedSet.Add(currentNode);
-
-                if (currentNode == targetNode)
+            List<Vector2> pathToTarget = null;
+            
+            if(startNode.Walkable && targetNode.Walkable){
+                while (openSet.Count > 0)
                 {
-                    pathToTarget = RetracePath(targetNode);
-                    break;
-                }
-                
+                    Node currentNode = openSet.RemoveFirstItem();
+                    closedSet.Add(currentNode);
 
-                foreach (Node neighbour in grid.GetNodeNeighbours(currentNode))
-                {
-                    if (neighbour.Walkable == false || closedSet.Contains(neighbour))
+                    if (currentNode == targetNode)
                     {
-                        continue;
+                        pathToTarget = RetracePath(grid, targetNode);
+                        break;
                     }
 
-                    int newMovementCost = currentNode.GCost + GetDistance(currentNode, neighbour);
-                    if (newMovementCost < neighbour.GCost || openSet.Contains(neighbour) == false)
-                    {
-                        neighbour.GCost = newMovementCost;
-                        neighbour.HCost = GetDistance(neighbour, targetNode);
-                        neighbour.SetParent(currentNode);
 
-                        if (openSet.Contains(neighbour) == false)
+                    foreach (Node neighbour in grid.GetNodeNeighbours(currentNode))
+                    {
+                        if (neighbour.Walkable == false || closedSet.Contains(neighbour))
                         {
-                            openSet.Add(neighbour);
+                            continue;
                         }
-                        else{
-                            openSet.UpdateItem(neighbour);
+
+                        int newMovementCost = currentNode.GCost + GetDistance(currentNode, neighbour);
+                        if (newMovementCost < neighbour.GCost || openSet.Contains(neighbour) == false)
+                        {
+                            neighbour.GCost = newMovementCost;
+                            neighbour.HCost = GetDistance(neighbour, targetNode);
+                            neighbour.SetParent(currentNode);
+
+                            if (openSet.Contains(neighbour) == false)
+                            {
+                                openSet.Add(neighbour);
+                            }
+                            else
+                            {
+                                openSet.UpdateItem(neighbour);
+                            }
                         }
                     }
                 }
             }
-
             yield return null;
             
             if (pathToTarget != null)
@@ -76,15 +76,13 @@ namespace PathFinding.AStar
             {
                 PathRequestManager.Instance.FinishedProcessingPath(null,false);
             }
-            sw.Stop();
-            Debug.Log($"Found path in: {sw.ElapsedMilliseconds}ms");
         }
 
-        List<Node> RetracePath(Node endNode)
+        List<Vector2> RetracePath(Grid grid, Node endNode)
         {
             List<Node> path = new List<Node>();
             Node currentNode = endNode;
-            path.Add(endNode);
+            path.Add(currentNode);
 
             while (currentNode.Parent != null)
             {
@@ -92,8 +90,28 @@ namespace PathFinding.AStar
                 path.Add(currentNode);
             }
 
-            path.Reverse();
-            return path;
+            List<Vector2> wayPoints = SimplifyPath(grid, path);
+            wayPoints.Reverse();
+            return wayPoints;
+        }
+
+        List<Vector2> SimplifyPath(Grid grid, List<Node> path)
+        {
+            List<Vector2> wayPoints = new List<Vector2>();
+            Vector2 directionOld = Vector2.zero;
+            for (int i = 1; i < path.Count; i++)
+            {
+                int xDirection = path[i - 1].GridX - path[i].GridX;
+                int yDirection = path[i - 1].GridY - path[i].GridY;
+                Vector2 direction = new Vector2(xDirection, yDirection);
+                if (direction != directionOld)
+                {
+                    wayPoints.Add(grid.GridToWorldPositionCentered(path[i].GridX, path[i].GridY));
+                    directionOld = direction;
+                }
+            }
+
+            return wayPoints;
         }
 
         private int GetDistance(Node nodeA, Node nodeB)

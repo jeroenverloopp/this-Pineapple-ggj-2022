@@ -41,7 +41,7 @@ namespace PathFinding.AStar
             }
         }
 
-        public void SetWalkableByCollision(LayerMask collisionMask)
+        public void SetWalkableByCollision(LayerMask collisionMask, float radius)
         {
             foreach (var node in _grid)
             {
@@ -49,9 +49,8 @@ namespace PathFinding.AStar
                 Vector2 size = _nodeSize / 2;
 
                 Vector3 boxCenter = new Vector3(center.x, 0, center.y);
-                Vector3 boxSize = new Vector3(size.x, 1, size.y);
 
-                if (Physics.CheckBox(boxCenter, boxSize, Quaternion.identity, collisionMask))
+                if (Physics.CheckSphere(boxCenter, radius, collisionMask))
                 {
                     node.SetWalkable(false);
                 }
