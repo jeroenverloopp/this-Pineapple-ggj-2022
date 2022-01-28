@@ -46,14 +46,7 @@ namespace PathFinding.AStar
                 Vector2 center = GridToWorldPositionCentered(node.GridX, node.GridY);
                 Vector2 size = _nodeSize / 2;
 
-                if(Physics2D.OverlapCircle(center, radius, collisionMask))
-                {
-                    node.SetWalkable(false);
-                }
-                else
-                {
-                    node.SetWalkable(true);
-                }
+                node.SetWalkable(Physics2D.OverlapCircle(center, radius, collisionMask) == false);
             }
         }
 

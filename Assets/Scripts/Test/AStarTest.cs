@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using PathFinding.AStar;
+﻿using Level;
 using Test;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
-using Grid = PathFinding.AStar.Grid;
 
 
 public class AStarTest : MonoBehaviour
@@ -12,12 +10,13 @@ public class AStarTest : MonoBehaviour
     [SerializeField] private LayerMask _wallsMask;
     [SerializeField] private Unit _testUnitPrefab;
     [SerializeField] private Transform _target;
-    private Grid _grid;
+    private LevelAStarGrid _grid;
 
     private void Awake()
     {
-        _grid = new Grid(Vector2.zero, new Vector2(100, 100), new Vector2Int(100, 100));
+        _grid = new LevelAStarGrid(new Vector2(-50,-50), new Vector2(100, 100), new Vector2Int(100, 100));
         _grid.SetWalkableByCollision(_wallsMask, 2);
+        _grid.SetNeighbours();
     }
 
     private void CreateUnit()
@@ -27,8 +26,8 @@ public class AStarTest : MonoBehaviour
             Debug.LogError("Define Grid before Creating a search request");
         }
 
-        Vector3 startPosition = new Vector3(UnityEngine.Random.Range(0, 100), 1 , UnityEngine.Random.Range(0, 100));
-        if (Physics.CheckSphere(startPosition, 2, _wallsMask))
+        Vector3 startPosition = new Vector3(Random.Range(-50, 50), Random.Range(-50, 50));
+        if(Physics2D.OverlapCircle(startPosition, 2, _wallsMask))
         {
             return;
         }
@@ -40,18 +39,22 @@ public class AStarTest : MonoBehaviour
     public void CreateSUnit(CallbackContext context)
     {
         if(context.performed)
+        {
             for (int i = 0; i < 1; i++)
             {
                 CreateUnit();
             }
+        }
     }
 
     public void CreateAUnit(CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
+        {
             for (int i = 0; i < 10; i++)
             {
                 CreateUnit();
             }
+        }
     }
 }
