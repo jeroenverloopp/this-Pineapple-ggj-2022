@@ -2,6 +2,7 @@
 using PathFinding.AStar;
 using Test;
 using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
 using Grid = PathFinding.AStar.Grid;
 
 
@@ -36,21 +37,21 @@ public class AStarTest : MonoBehaviour
         unit.SetTarget(_grid, _target);
     }
 
-    void Update()
+    public void CreateSUnit(CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
+        if(context.performed)
             for (int i = 0; i < 1; i++)
             {
                 CreateUnit();
             }
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
+    }
+
+    public void CreateAUnit(CallbackContext context)
+    {
+        if(context.performed)
             for (int i = 0; i < 10; i++)
             {
                 CreateUnit();
             }
-        }
     }
 }

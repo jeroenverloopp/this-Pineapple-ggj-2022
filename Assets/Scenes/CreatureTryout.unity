@@ -123,50 +123,28 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &805876449 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3276730980003007728, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
-  m_PrefabInstance: {fileID: 1178613749}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &805876451
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805876449}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!1001 &1178613749
+--- !u!1001 &1143690134
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2442895267846705514, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.08
+      value: 7.6
       objectReference: {fileID: 0}
     - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
       propertyPath: m_LocalPosition.z
@@ -202,7 +180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3276730980003007728, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
       propertyPath: m_Name
-      value: FlufflePuff (1)
+      value: Blobski
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802284767311208503, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
@@ -312,6 +294,141 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1664462187
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2544713620655136030, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: OnTriggerEnter2DAction.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2544713620655136030, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: OnCollisionEnter2DAction.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2544713620655136030, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: OnTriggerEnter2DAction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2544713620655136030, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: OnTriggerEnter2DAction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773365969162390417, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276730980003007728, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_Name
+      value: Teethyboi
+      objectReference: {fileID: 0}
+    - target: {fileID: 4243997686713602330, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323368430416144209, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+    - target: {fileID: 6323368430416144209, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_Color.b
+      value: 0.052872483
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323368430416144209, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_Color.g
+      value: 0.03441316
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323368430416144209, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728066071470370857, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624325032437466315, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: MoveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624325032437466315, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: creatureData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a84431675253df449819647cf2fc059, type: 2}
+    - target: {fileID: 8802284767311208503, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: m_Name
+      value: ReachTrigger
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+--- !u!1 &1664462188 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3276730980003007728, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+  m_PrefabInstance: {fileID: 1664462187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1664462189
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664462188}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &1789232031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -329,7 +446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2544713620655136030, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
       propertyPath: OnTriggerEnter2DAction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2544713620655136030, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
       propertyPath: OnTriggerEnter2DAction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -387,6 +504,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8624325032437466315, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: MoveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624325032437466315, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+      propertyPath: creatureData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a84431675253df449819647cf2fc059, type: 2}
     - target: {fileID: 8802284767311208503, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
       propertyPath: m_Name
       value: ReachTrigger
@@ -452,6 +577,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 64fbdc41-12b4-4eb2-b126-e0c3618cd601
     m_ActionName: Creature/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 271447f4-0618-414e-ab0d-9f41f9ef581d
+    m_ActionName: PathFindingTest/Create S Unit[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 13e64095-cb55-4b96-b3e9-c636a613e8e0
+    m_ActionName: PathFindingTest/Create A Unit[/Keyboard/a]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Creature

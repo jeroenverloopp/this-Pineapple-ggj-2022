@@ -17,6 +17,6 @@ public class CreatureMovementScript : MonoBehaviour
     {
         var input = playerInput.actions["Movement"].ReadValue<Vector2>();
 
-        transform.position += new Vector3(input.x, input.y, 0) * baseCreature.moveSpeed * Time.deltaTime;
+        transform.position += new Vector3(input.x, input.y, 0) * baseCreature.MoveSpeed * Time.deltaTime;
     }
 }

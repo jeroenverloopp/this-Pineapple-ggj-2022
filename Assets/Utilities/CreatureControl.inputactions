@@ -72,6 +72,54 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "PathFindingTest",
+            "id": "73e507f2-ad74-407c-9c31-187b4bb6a27e",
+            "actions": [
+                {
+                    "name": "Create S Unit",
+                    "type": "Button",
+                    "id": "271447f4-0618-414e-ab0d-9f41f9ef581d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Create A Unit",
+                    "type": "Button",
+                    "id": "13e64095-cb55-4b96-b3e9-c636a613e8e0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a360e557-b623-447b-9c4e-72dcd5bb43b5",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Create S Unit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98c5fd01-1c09-4dbd-b45c-987a82750f02",
+                    "path": "<Keyboard>/a",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Create A Unit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
