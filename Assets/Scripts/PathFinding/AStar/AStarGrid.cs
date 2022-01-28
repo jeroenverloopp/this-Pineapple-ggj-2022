@@ -4,10 +4,8 @@ using UnityEngine;
 namespace PathFinding.AStar
 {
 
-    public class Grid
+    public abstract class AStarGrid
     {
-
-
         public Vector2 NodeSize => _nodeSize;
         public Vector2Int NodeCount => _nodeCount;
         public int TotalNodes => _nodeCount.x * _nodeCount.y;
@@ -16,18 +14,18 @@ namespace PathFinding.AStar
         public Vector2 TopRight => _position + _gridSize;
         public Vector2 LeftBottom => _position;
 
-        private Node[,] _grid;
-        private Vector2 _position;
-        private Vector2 _gridSize;
-        private Vector2 _nodeSize;
-        private Vector2Int _nodeCount;
+        protected AStarNode[,] _grid;
+        protected Vector2 _position;
+        protected Vector2 _gridSize;
+        protected Vector2 _nodeSize;
+        protected Vector2Int _nodeCount;
 
-        public Grid(Vector2 position, Vector2 gridSize, Vector2Int nodeCount)
+        public AStarGrid(Vector2 position, Vector2 gridSize, Vector2Int nodeCount)
         {
             _position = position;
             _gridSize = gridSize;
             _nodeCount = nodeCount;
-            _grid = new Node[_nodeCount.x, _nodeCount.y];
+            _grid = new AStarNode[_nodeCount.x, _nodeCount.y];
             _nodeSize = new Vector2(_gridSize.x / _nodeCount.x, _gridSize.y / _nodeCount.y);
 
             CreateGrid();
@@ -48,9 +46,7 @@ namespace PathFinding.AStar
                 Vector2 center = GridToWorldPositionCentered(node.GridX, node.GridY);
                 Vector2 size = _nodeSize / 2;
 
-                Vector3 boxCenter = new Vector3(center.x, 0, center.y);
-
-                if (Physics.CheckSphere(boxCenter, radius, collisionMask))
+                if(Physics2D.OverlapCircle(center, radius, collisionMask))
                 {
                     node.SetWalkable(false);
                 }
@@ -66,9 +62,9 @@ namespace PathFinding.AStar
             return x >= 0 && x < _nodeCount.x && y >= 0 && y < _nodeCount.y;
         }
 
-        public List<Node> GetNodeNeighbours(Node node)
+        public List<AStarNode> GetNodeNeighbours(AStarNode aStarNode)
         {
-            List<Node> neighbours = new List<Node>();
+            List<AStarNode> neighbours = new List<AStarNode>();
             for (int x = -1; x <= 1; x++)
             {
                 for (int y = -1; y <= 1; y++)
@@ -78,9 +74,9 @@ namespace PathFinding.AStar
                         continue;
                     }
 
-                    if (InBounds(node.GridX + x, node.GridY + y))
+                    if (InBounds(aStarNode.GridX + x, aStarNode.GridY + y))
                     {
-                        neighbours.Add(_grid[node.GridX + x, node.GridY + y]);
+                        neighbours.Add(_grid[aStarNode.GridX + x, aStarNode.GridY + y]);
                     }
                 }
             }
@@ -88,12 +84,12 @@ namespace PathFinding.AStar
             return neighbours;
         }
 
-        public Node NodeFromWorldPosition(Vector2 worldPosition)
+        public AStarNode NodeFromWorldPosition(Vector2 worldPosition)
         {
             return NodeFromWorldPosition(worldPosition.x, worldPosition.y);
         }
 
-        public Node NodeFromWorldPosition(float worldX, float worldY)
+        public AStarNode NodeFromWorldPosition(float worldX, float worldY)
         {
             Vector2Int gridPosition = WorldToGridPositionInBounds(worldX, worldY);
             return _grid[gridPosition.x, gridPosition.y];
@@ -145,15 +141,39 @@ namespace PathFinding.AStar
             );
         }
 
-        private void CreateGrid()
+        public virtual void SetNeighbours()
+        {
+            foreach (var node in _grid)
+            {
+                for (int x = -1; x <= 1; x++)
+                {
+                    for (int y = -1; y <= 1; y++)
+                    {
+                        if (x == 0 && y == 0)
+                        {
+                            continue;
+                        }
+                        int xPos = node.GridX + x;
+                        int yPos = node.GridY + y;
+                        if (InBounds(xPos, yPos) && _grid[xPos,yPos].Walkable)
+                        {
+                            node.AddNeighbour(_grid[xPos,yPos]);
+                        }
+                    }
+                }
+            }
+        }
+        
+        public virtual void CreateGrid()
         {
             for (int x = 0; x < _grid.GetLength(0); x++)
             {
                 for (int y = 0; y < _grid.GetLength(0); y++)
                 {
-                    _grid[x, y] = new Node(x, y);
+                    _grid[x, y] = new AStarNode(x, y);
                 }
             }
         }
+
     }
 }

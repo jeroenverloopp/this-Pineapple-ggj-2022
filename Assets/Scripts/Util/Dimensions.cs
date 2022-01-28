@@ -4,7 +4,7 @@ namespace Util
 {
     public static class Dimensions {
 
-
+/*
         public static Vector2 TransformPosition2D(Transform transform)
         {
             return new Vector2(transform.position.x, transform.position.z);
@@ -19,6 +19,7 @@ namespace Util
         {
             return new Vector3(position.x, yPosition, position.y);
         }
+        */
         
     }
 }

@@ -12,47 +12,47 @@ namespace PathFinding.AStar
 
         public IEnumerator FindPath(PathRequest pathRequest)
         {
-            return FindPath(pathRequest.PathStart, pathRequest.PathEnd, pathRequest.Grid);
+            return FindPath(pathRequest.PathStart, pathRequest.PathEnd, pathRequest.AStarGrid);
         }
         
-        public IEnumerator FindPath(Vector2 startPosition, Vector2 endPosition, Grid grid)
+        public IEnumerator FindPath(Vector2 startPosition, Vector2 endPosition, AStarGrid aStarGrid)
         {
-            grid.ResetNodes();
-            Node startNode = grid.NodeFromWorldPosition(startPosition);
-            Node targetNode = grid.NodeFromWorldPosition(endPosition);
+            aStarGrid.ResetNodes();
+            AStarNode startAStarNode = aStarGrid.NodeFromWorldPosition(startPosition);
+            AStarNode targetAStarNode = aStarGrid.NodeFromWorldPosition(endPosition);
 
-            Heap<Node> openSet = new Heap<Node>(grid.TotalNodes);
-            HashSet<Node> closedSet = new HashSet<Node>();
-            openSet.Add(startNode);
+            Heap<AStarNode> openSet = new Heap<AStarNode>(aStarGrid.TotalNodes);
+            HashSet<AStarNode> closedSet = new HashSet<AStarNode>();
+            openSet.Add(startAStarNode);
 
             List<Vector2> pathToTarget = null;
             
-            if(startNode.Walkable && targetNode.Walkable){
+            if(startAStarNode.Walkable && targetAStarNode.Walkable){
                 while (openSet.Count > 0)
                 {
-                    Node currentNode = openSet.RemoveFirstItem();
-                    closedSet.Add(currentNode);
+                    AStarNode currentAStarNode = openSet.RemoveFirstItem();
+                    closedSet.Add(currentAStarNode);
 
-                    if (currentNode == targetNode)
+                    if (currentAStarNode == targetAStarNode)
                     {
-                        pathToTarget = RetracePath(grid, targetNode);
+                        pathToTarget = RetracePath(aStarGrid, targetAStarNode);
                         break;
                     }
 
 
-                    foreach (Node neighbour in grid.GetNodeNeighbours(currentNode))
+                    foreach (AStarNode neighbour in currentAStarNode.Neighbours)
                     {
                         if (neighbour.Walkable == false || closedSet.Contains(neighbour))
                         {
                             continue;
                         }
 
-                        int newMovementCost = currentNode.GCost + GetDistance(currentNode, neighbour);
+                        int newMovementCost = currentAStarNode.GCost + GetDistance(currentAStarNode, neighbour);
                         if (newMovementCost < neighbour.GCost || openSet.Contains(neighbour) == false)
                         {
                             neighbour.GCost = newMovementCost;
-                            neighbour.HCost = GetDistance(neighbour, targetNode);
-                            neighbour.SetParent(currentNode);
+                            neighbour.HCost = GetDistance(neighbour, targetAStarNode);
+                            neighbour.SetParent(currentAStarNode);
 
                             if (openSet.Contains(neighbour) == false)
                             {
@@ -66,28 +66,28 @@ namespace PathFinding.AStar
                     }
                 }
             }
-            yield return null;
+            yield return new WaitForSeconds(.025f);
             
             if (pathToTarget != null)
             {
-                PathRequestManager.Instance.FinishedProcessingPath(pathToTarget, true);
+                PathRequestManager.FinishedProcessingPath(pathToTarget, true);
             }
             else
             {
-                PathRequestManager.Instance.FinishedProcessingPath(null,false);
+                PathRequestManager.FinishedProcessingPath(null,false);
             }
         }
 
-        List<Vector2> RetracePath(Grid grid, Node endNode)
+        List<Vector2> RetracePath(AStarGrid grid, AStarNode endAStarNode)
         {
-            List<Node> path = new List<Node>();
-            Node currentNode = endNode;
-            path.Add(currentNode);
+            List<AStarNode> path = new List<AStarNode>();
+            AStarNode currentAStarNode = endAStarNode;
+            path.Add(currentAStarNode);
 
-            while (currentNode.Parent != null)
+            while (currentAStarNode.Parent != null)
             {
-                currentNode = currentNode.Parent;
-                path.Add(currentNode);
+                currentAStarNode = currentAStarNode.Parent;
+                path.Add(currentAStarNode);
             }
 
             List<Vector2> wayPoints = SimplifyPath(grid, path);
@@ -95,7 +95,7 @@ namespace PathFinding.AStar
             return wayPoints;
         }
 
-        List<Vector2> SimplifyPath(Grid grid, List<Node> path)
+        List<Vector2> SimplifyPath(AStarGrid grid, List<AStarNode> path)
         {
             List<Vector2> wayPoints = new List<Vector2>();
             Vector2 directionOld = Vector2.zero;
@@ -114,10 +114,10 @@ namespace PathFinding.AStar
             return wayPoints;
         }
 
-        private int GetDistance(Node nodeA, Node nodeB)
+        private int GetDistance(AStarNode aStarNodeA, AStarNode aStarNodeB)
         {
-            int distX = Mathf.Abs(nodeA.GridX - nodeB.GridX);
-            int distY = Mathf.Abs(nodeA.GridY - nodeB.GridY);
+            int distX = Mathf.Abs(aStarNodeA.GridX - aStarNodeB.GridX);
+            int distY = Mathf.Abs(aStarNodeA.GridY - aStarNodeB.GridY);
             int diff = Mathf.Abs(distX - distY);
             int max = Mathf.Max(distX, distY);
             return 10 * diff + (max - diff) * 14;

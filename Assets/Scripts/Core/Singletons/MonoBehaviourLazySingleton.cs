@@ -10,7 +10,9 @@ namespace Core.Singletons
             {
                 if (_instance == null)
                 {
-                    GameObject go =new GameObject($"Lazy Singleton({typeof(T)})");
+                    GameObject go = new GameObject($"{typeof(T).Name} [Singleton][Lazy]");
+                    go.hideFlags = HideFlags.HideAndDontSave;
+                    DontDestroyOnLoad(go);
                     _instance = go.AddComponent<T>();
                 }
 

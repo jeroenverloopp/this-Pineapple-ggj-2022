@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Level;
 using PathFinding.AStar;
 using UnityEngine;
 using Util;
-using Grid = PathFinding.AStar.Grid;
 using Random = UnityEngine.Random;
 
 namespace Test
@@ -17,16 +17,16 @@ namespace Test
         private List<Vector2> _waypoints;
         private void Awake()
         {
-            _speed = Random.Range(3.0f, 5.0f);
+            _speed = Random.Range(10.0f, 15.0f);
         }
 
 
-        public void SetTarget(Grid grid, Transform target)
+        public void SetTarget(LevelAStarGrid aStarGrid, Transform target)
         {
             _target = target;
-            Vector2 from = Dimensions.TransformPosition2D(transform);
-            Vector2 to = Dimensions.TransformPosition2D(target);
-            PathRequestManager.RequestPath(grid, from, to , SetPathToTarget);
+            Vector2 from = transform.position;
+            Vector2 to = target.position;
+            PathRequestManager.RequestPath(aStarGrid, from, to , SetPathToTarget);
         }
 
         private void SetPathToTarget(List<Vector2> waypoints, bool success)
@@ -37,6 +37,10 @@ namespace Test
                 StopCoroutine(FollowPath());
                 StartCoroutine(FollowPath());
             }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         private IEnumerator FollowPath()
@@ -46,12 +50,13 @@ namespace Test
 
             while (true)
             {
-                Vector2 position = Dimensions.TransformPosition2D(transform);
+                Vector2 position = transform.position;
                 if (position == currentWaypoint)
                 {
                     targetIndex++;
                     if (targetIndex >= _waypoints.Count)
                     {
+                        Destroy(gameObject);
                         yield break;
                     }
                     currentWaypoint = _waypoints[targetIndex];
@@ -59,10 +64,21 @@ namespace Test
 
                 //Debug.Log($"{position} -> {currentWaypoint}");
                 Vector2 nextPos = Vector2.MoveTowards(position, currentWaypoint, _speed*Time.deltaTime);
-                transform.position = Dimensions.TransformPosition3D(nextPos , 1);
+                transform.position = nextPos;
                 yield return null;
             }
         }
-        
+
+        private void OnDrawGizmos()
+        {
+            if (_waypoints == null) return;
+            Gizmos.color = Color.magenta;
+            foreach (var wp in _waypoints)
+            {
+                Vector3 pos = wp;
+                
+                Gizmos.DrawSphere(pos, 1);
+            }
+        }
     }
 }

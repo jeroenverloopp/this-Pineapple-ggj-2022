@@ -8,12 +8,12 @@ namespace PathFinding.AStar
     {
         public readonly Vector2 PathStart;
         public readonly Vector2 PathEnd;
-        public readonly Grid Grid;
+        public readonly AStarGrid AStarGrid;
         public readonly Action<List<Vector2>, bool> CallBack;
 
-        public PathRequest(Grid grid, Vector2 pathStart, Vector2 pathEnd, Action<List<Vector2>, bool> callBack)
+        public PathRequest(AStarGrid aStarGrid, Vector2 pathStart, Vector2 pathEnd, Action<List<Vector2>, bool> callBack)
         {
-            Grid = grid;
+            AStarGrid = aStarGrid;
             PathStart = pathStart;
             PathEnd = pathEnd;
             CallBack = callBack;

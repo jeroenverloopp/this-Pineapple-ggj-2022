@@ -2,36 +2,37 @@
 using System.Collections.Generic;
 using Core.Singletons;
 using UnityEngine;
+using Util;
 
 namespace PathFinding.AStar
 {
-    public class PathRequestManager : MonoBehaviourLazySingleton<PathRequestManager>
+    public static class PathRequestManager
     {
-        private Queue<PathRequest> _pathRequestQueue = new();
-        private PathRequest _currentPathRequest;
+        private static readonly Queue<PathRequest> _pathRequestQueue = new Queue<PathRequest>();
+        private static PathRequest _currentPathRequest;
 
-        private readonly AStar _aStar = new AStar();
-        private bool _isProcessingPath;
+        private static readonly AStar _aStar = new AStar();
+        private static bool _isProcessingPath;
 
-        public static void RequestPath(Grid grid, Vector2 pathStart, Vector2 pathEnd, Action<List<Vector2>, bool> callback)
+        public static void RequestPath(AStarGrid aStarGrid, Vector2 pathStart, Vector2 pathEnd, Action<List<Vector2>, bool> callback)
         {
-            PathRequest pathRequest = new PathRequest(grid,pathStart, pathEnd, callback);
-            Instance._pathRequestQueue.Enqueue(pathRequest);
-            Instance.TryProcessNext();
+            PathRequest pathRequest = new PathRequest(aStarGrid,pathStart, pathEnd, callback);
+            _pathRequestQueue.Enqueue(pathRequest);
+            TryProcessNext();
         }
 
 
-        void TryProcessNext()
+        private static void TryProcessNext()
         {
             if (_isProcessingPath == false && _pathRequestQueue.Count > 0)
             {
                 _currentPathRequest = _pathRequestQueue.Dequeue();
                 _isProcessingPath = true;
-                StartCoroutine(_aStar.FindPath(_currentPathRequest));
+                CoroutineHelper.Instance.StartCoroutine(_aStar.FindPath(_currentPathRequest));
             }
         }
 
-        public void FinishedProcessingPath(List<Vector2> path, bool success)
+        public static void FinishedProcessingPath(List<Vector2> path, bool success)
         {
             _currentPathRequest.CallBack?.Invoke(path, success);
             _isProcessingPath = false;

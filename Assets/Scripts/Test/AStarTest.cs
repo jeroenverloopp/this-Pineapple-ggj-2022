@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using PathFinding.AStar;
+﻿using Level;
 using Test;
 using UnityEngine;
-using Grid = PathFinding.AStar.Grid;
 
 
 public class AStarTest : MonoBehaviour
@@ -11,29 +9,30 @@ public class AStarTest : MonoBehaviour
     [SerializeField] private LayerMask _wallsMask;
     [SerializeField] private Unit _testUnitPrefab;
     [SerializeField] private Transform _target;
-    private Grid _grid;
+    private LevelAStarGrid _aStarGrid;
 
     private void Awake()
     {
-        _grid = new Grid(Vector2.zero, new Vector2(100, 100), new Vector2Int(100, 100));
-        _grid.SetWalkableByCollision(_wallsMask, 2);
+        _aStarGrid = new LevelAStarGrid(new Vector2(-50,-50), new Vector2(100, 100), new Vector2Int(100, 100));
+        _aStarGrid.SetWalkableByCollision(_wallsMask, 2);
+        _aStarGrid.SetNeighbours();
     }
 
     private void CreateUnit()
     {
-        if (_grid == null)
+        if (_aStarGrid == null)
         {
             Debug.LogError("Define Grid before Creating a search request");
         }
 
-        Vector3 startPosition = new Vector3(UnityEngine.Random.Range(0, 100), 1 , UnityEngine.Random.Range(0, 100));
-        if (Physics.CheckSphere(startPosition, 2, _wallsMask))
+        Vector3 startPosition = new Vector2(Random.Range(-50, 50), Random.Range(-50, 50));
+        if (Physics2D.OverlapCircle(startPosition, 2.2f, _wallsMask))
         {
             return;
         }
         
         Unit unit = Instantiate(_testUnitPrefab, startPosition , Quaternion.identity);
-        unit.SetTarget(_grid, _target);
+        unit.SetTarget(_aStarGrid, _target);
     }
 
     void Update()
