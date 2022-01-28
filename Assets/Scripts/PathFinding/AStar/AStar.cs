@@ -17,8 +17,6 @@ namespace PathFinding.AStar
         
         public IEnumerator FindPath(Vector2 startPosition, Vector2 endPosition, Grid grid)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
             grid.ResetNodes();
             Node startNode = grid.NodeFromWorldPosition(startPosition);
             Node targetNode = grid.NodeFromWorldPosition(endPosition);
@@ -78,8 +76,6 @@ namespace PathFinding.AStar
             {
                 PathRequestManager.Instance.FinishedProcessingPath(null,false);
             }
-            sw.Stop();
-            Debug.Log($"Found path in: {sw.ElapsedMilliseconds}ms");
         }
 
         List<Vector2> RetracePath(Grid grid, Node endNode)
@@ -94,12 +90,12 @@ namespace PathFinding.AStar
                 path.Add(currentNode);
             }
 
-            List<Vector2> wayPoints = SimplifyPath(path);
+            List<Vector2> wayPoints = SimplifyPath(grid, path);
             wayPoints.Reverse();
             return wayPoints;
         }
 
-        List<Vector2> SimplifyPath(List<Node> path)
+        List<Vector2> SimplifyPath(Grid grid, List<Node> path)
         {
             List<Vector2> wayPoints = new List<Vector2>();
             Vector2 directionOld = Vector2.zero;
@@ -110,7 +106,7 @@ namespace PathFinding.AStar
                 Vector2 direction = new Vector2(xDirection, yDirection);
                 if (direction != directionOld)
                 {
-                    wayPoints.Add(direction);
+                    wayPoints.Add(grid.GridToWorldPositionCentered(path[i].GridX, path[i].GridY));
                     directionOld = direction;
                 }
             }
