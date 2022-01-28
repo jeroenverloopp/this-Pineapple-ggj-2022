@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cea6c8a6bca67f49987c8428354895c, type: 3}
   m_Name: ThingWithTeeth
   m_EditorClassIdentifier: 
-  MoveSpeed: 0
-  EatsCreatures: []
-  GetsEatenByCreatures: []
+  MoveSpeed: 3
+  EatsCreatures:
+  - {fileID: 11400000, guid: 3a84431675253df449819647cf2fc059, type: 2}
+  IsAfraidOfCreatures: []
