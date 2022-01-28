@@ -7,8 +7,7 @@
 [Ll]ocal[Cc]ache/
 [Oo]bj/
 [Tt]emp/
-[Ll]ogs/
-[Uu]serSettings/
+
 [Uu]nityGenerated/
 # file on crash reports
 sysinfo.txt
@@ -41,3 +40,11 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 Thumbs.db
+
+###
+# Custom
+###
+[Ll]ogs/
+[Uu]serSettings/
+
+*.log
