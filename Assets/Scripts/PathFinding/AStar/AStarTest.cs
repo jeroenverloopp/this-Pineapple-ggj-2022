@@ -39,7 +39,7 @@ namespace PathFinding.AStar
         }
         
         
-        private void OnPathFound (List<Node> path, bool foundPath)
+        private void OnPathFound (List<Vector2> path, bool foundPath)
         {
             if (foundPath)
             {

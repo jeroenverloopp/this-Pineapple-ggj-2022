@@ -13,7 +13,7 @@ namespace PathFinding.AStar
         private readonly AStar _aStar = new AStar();
         private bool _isProcessingPath;
 
-        public static void RequestPath(Grid grid, Vector2 pathStart, Vector2 pathEnd, Action<List<Node>, bool> callback)
+        public static void RequestPath(Grid grid, Vector2 pathStart, Vector2 pathEnd, Action<List<Vector2>, bool> callback)
         {
             PathRequest pathRequest = new PathRequest(grid,pathStart, pathEnd, callback);
             Instance._pathRequestQueue.Enqueue(pathRequest);
@@ -31,7 +31,7 @@ namespace PathFinding.AStar
             }
         }
 
-        public void FinishedProcessingPath(List<Node> path, bool success)
+        public void FinishedProcessingPath(List<Vector2> path, bool success)
         {
             _currentPathRequest.CallBack?.Invoke(path, success);
             _isProcessingPath = false;
