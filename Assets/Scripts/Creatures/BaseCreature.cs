@@ -11,6 +11,7 @@ public class BaseCreature : MonoBehaviour
     protected BreedState breedState = BreedState.Cooldown;
     protected float breedTimer;
     protected enum BreedState { Breeding, Cooldown, Idle };
+    protected enum BehaviourState {Idle, Roaming, Fleeing, LookingForFood, Eating, FindingMate, Breeding}
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +66,7 @@ public class BaseCreature : MonoBehaviour
 
     protected void Hatch()
     {
+        Debug.Log("HATCH");
         // Instantiate new Fluff Creature somewhere close by
         var junior = Instantiate(creatureData.Prefab, (new Vector2(transform.position.x, transform.position.y) + new Vector2(Random.Range(-1, 1), Random.Range(-1, 1))), Quaternion.identity);
         breedState = BreedState.Cooldown;
