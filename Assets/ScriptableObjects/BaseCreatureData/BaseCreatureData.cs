@@ -14,7 +14,7 @@ public class BaseCreatureData : ScriptableObject
     public List<BaseBehaviour> Behaviours;
 
     [Header("Stats")]
-    public float Nutrition = 50; //Amount of food gained when this creature is eaten.
+    public int Nutrition = 50; //Amount of food gained when this creature is eaten.
     public float TimeToGetEaten = 5; //Amount of time before this creature is chomped to bits.
     public float MoveSpeed; //The speed when normally walking
     

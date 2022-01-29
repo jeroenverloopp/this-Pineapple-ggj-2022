@@ -18,13 +18,13 @@ public class BaseCreature : MonoBehaviour
 
 
     public MovementComponent Movement => _movement;
-
-    [SerializeField] private MovementComponent _movement;
-    private BehaviourManager _behaviourManager;
-
     public BehaviourState State { get; private set; }
-    
     public float Hunger { get; private set; }
+    public bool Alive { get; private set; } = true;
+    
+    [SerializeField] private MovementComponent _movement;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    private BehaviourManager _behaviourManager;
 
     private void Awake()
     {
@@ -53,9 +53,13 @@ public class BaseCreature : MonoBehaviour
         //BreedUpdate();
 
         Hunger = Mathf.Min(Hunger + Time.deltaTime, creatureData.MaxHunger);
+
+        Color s = _spriteRenderer.color;
+        _spriteRenderer.color = new Color(s.r, s.g, s.b, 1 - Hunger / creatureData.MaxHunger);
+        
         if(Hunger >= creatureData.MaxHunger)
         {
-            Destroy(gameObject);
+            Die();
         }
         
     }
@@ -65,6 +69,19 @@ public class BaseCreature : MonoBehaviour
         //Debug.Log($"{State} -> {state}");
         State = state;
 
+    }
+
+    public void Eat(BaseCreature creature)
+    {
+        Hunger = Mathf.Max(Hunger - creature.creatureData.Nutrition, 0);
+        Debug.Log(Hunger);
+        creature.Die();
+    }
+
+    public void Die()
+    {
+        Alive = false;
+        Destroy(gameObject);
     }
 
     public virtual void WhenInReach(Collider2D collider)

@@ -27,16 +27,16 @@ MonoBehaviour:
   MaxFleeDuration: 10
   FleeCoolDown: 0
   KeepFleeingAfterLosingPredator: 0
-  RoamRange: 50
+  RoamRange: 15
   MinRoamingTime: 5
   MaxRoamingTime: 25
   StartHunger: 45
   HungerGained: 1
   MaxHunger: 100
-  HuntHunger: 50
-  HuntingPriorityIncrease: 5
-  FindFoodRange: 20
-  EatRange: 4
+  HuntHunger: 40
+  HuntingPriorityIncrease: 0.1
+  FindFoodRange: 10
+  EatRange: 1
   EatsCreatures:
   - {fileID: 11400000, guid: 3a84431675253df449819647cf2fc059, type: 2}
   EatsGround: 

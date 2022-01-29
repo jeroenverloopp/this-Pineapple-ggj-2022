@@ -16,10 +16,19 @@ namespace Creatures
         public Action OnTargetReached;
         public Action OnSetTargetFailed;
         
+        public bool Moving { get; private set; }
+        public Vector2 TargetPosition { get; private set; }
+        
         public void Stop()
         {
             StopCoroutine(nameof(FollowPath));
             _waypoints = null;
+            Moving = false;
+        }
+        
+        public void SetSpeed(float speed)
+        {
+            _speed = speed;
         }
         
         public void SetTarget(Transform target)
@@ -27,14 +36,10 @@ namespace Creatures
             SetTarget(target.position);
         }
 
-        public void SetSpeed(float speed)
-        {
-            _speed = speed;
-        }
-        
         public void SetTarget(Vector2 targetPosition)
         {
             Vector2 fromPosition = transform.position;
+            TargetPosition = targetPosition;
             PathRequestManager.RequestPath(LevelManager.Instance.Grid, fromPosition, targetPosition , SetPathToTarget);
         }
 
@@ -58,6 +63,7 @@ namespace Creatures
 
         private IEnumerator FollowPath()
         {
+            Moving = true;
             if (_waypoints != null && _waypoints.Count > 0)
             {
                 Vector2 currentWaypoint = _waypoints[0];
@@ -71,6 +77,7 @@ namespace Creatures
                         targetIndex++;
                         if (targetIndex >= _waypoints.Count)
                         {
+                            Moving = false;
                             OnTargetReached?.Invoke();
                             yield break;
                         }
@@ -85,6 +92,8 @@ namespace Creatures
                     yield return null;
                 }
             }
+
+            Moving = false;
         }
 
         private void OnDrawGizmos()

@@ -145,6 +145,7 @@ MonoBehaviour:
   creatureData: {fileID: 11400000, guid: 3a84431675253df449819647cf2fc059, type: 2}
   breedState: 1
   _movement: {fileID: 5978678076489527874}
+  _spriteRenderer: {fileID: 6323368430416144209}
 --- !u!114 &5978678076489527874
 MonoBehaviour:
   m_ObjectHideFlags: 0

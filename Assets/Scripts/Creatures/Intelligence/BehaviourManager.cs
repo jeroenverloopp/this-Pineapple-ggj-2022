@@ -41,7 +41,12 @@ namespace Creatures.Behaviour
 
         private void CheckForActivationOverride(BaseBehaviour overrideBehaviour)
         {
-            if (_activeBehaviour != overrideBehaviour && overrideBehaviour.Priority > _activeBehaviour.Priority)
+            if (_activeBehaviour == null)
+            {
+                _activeBehaviour = overrideBehaviour;
+                _activeBehaviour.SetActive(true);
+            }
+            else if (_activeBehaviour.GetType() != overrideBehaviour.GetType() && overrideBehaviour.Priority > _activeBehaviour.Priority)
             {
                 _activeBehaviour.SetActive(false);
                 _activeBehaviour = overrideBehaviour;

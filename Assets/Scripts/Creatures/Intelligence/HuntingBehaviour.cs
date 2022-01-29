@@ -22,10 +22,11 @@ namespace Creatures.Behaviour
         
         
         private float _durationTimer = 0;
-
-
+        
         private CircleTrigger _visionTrigger;
         private CircleTrigger _eatingTrigger;
+
+        private BaseCreature _huntingTarget;
         
         public override void Set(BaseCreatureData creatureData, BaseCreature creature)
         {
@@ -45,10 +46,29 @@ namespace Creatures.Behaviour
 
         protected override void UpdateWhenActive()
         {
-            _durationTimer = Mathf.Clamp(_durationTimer - Time.deltaTime, 0, _durationTimer);
-            if (_durationTimer <= 0)
+            if (_creature.Hunger < _creatureData.HuntHunger)
             {
                 OnDeactivationRequest?.Invoke(this);
+                return;
+            }
+
+            if (_huntingTarget != null)
+            {
+                if (Vector2.Distance(_huntingTarget.transform.position, transform.position) >
+                    _creatureData.FindFoodRange + 10)
+                {
+                    SetHuntingTarget(null);
+                    return;
+                }
+
+                if (_creature.Movement.Moving)
+                {
+                    float distFromPathToTarget = Vector2.Distance(_huntingTarget.transform.position, _creature.Movement.TargetPosition);
+                    if (distFromPathToTarget > _creatureData.EatRange-0.5f)
+                    {
+                        SetHuntingTarget(_huntingTarget);
+                    }
+                }
             }
         }
 
@@ -65,24 +85,24 @@ namespace Creatures.Behaviour
             base.SetActive(active);
             if (Active)
             {
-                
-                _durationTimer = Random.Range(1000,10000);
-                SetNewTarget();
-                _creature.Movement.OnTargetReached += SetNewTarget;
-                _creature.Movement.OnSetTargetFailed += SetNewTarget;
-                
+                _creature.Movement.OnTargetReached += OnTargetReached;
+                _creature.Movement.OnSetTargetFailed += OnTargetReached;
             }
             else
             {
-                
-                _creature.Movement.OnTargetReached -= SetNewTarget;
-                _creature.Movement.OnSetTargetFailed -= SetNewTarget;
-                
+                _creature.Movement.OnTargetReached -= OnTargetReached;
+                _creature.Movement.OnSetTargetFailed -= OnTargetReached;
+                _huntingTarget = null;
+                _creature.Movement.Stop();
             }
         }
         
         private void OnFoundFood(Collider2D collider)
         {
+            if (Active == false)
+            {
+                return;
+            }
             
             var creature = collider.gameObject.GetComponent<BaseCreature>();
             if (creature == null)
@@ -92,28 +112,67 @@ namespace Creatures.Behaviour
             
             if (_creatureData.EatsCreatures.Contains(creature.creatureData))
             {
-                Debug.Log("Found food!");
+                if (_huntingTarget == null)
+                {
+                    SetHuntingTarget(creature);
+                }
+                else
+                {
+                    float newDist = Vector2.Distance(transform.position, creature.transform.position);
+                    float currentDist = Vector2.Distance(transform.position, _huntingTarget.transform.position);
+                    if (newDist < currentDist)
+                    {
+                        SetHuntingTarget(creature);
+                    }
+                }
             }
         }
-        
+
         private void OnEatFood(Collider2D collider)
         {
-            Debug.Log("Eat food!");
-        }
-
-
-        private void FindHuntTarget()
-        {
-            Collider2D[] results = new Collider2D[1];
-            Physics2D.OverlapCircle(transform.position, _creatureData.FindFoodRange);
-        }
-
-        private void FindRoamTarget()
-        {
+            if (Active == false)
+            {
+                return;
+            }
             
+            var creature = collider.gameObject.GetComponent<BaseCreature>();
+            if (creature == null)
+            {
+                return;
+            }
+
+            if (_creatureData.EatsCreatures.Contains(creature.creatureData))
+            {
+                _creature.Eat(creature);
+            }
+
+            _creature.Movement.Stop();
+            SetHuntingTarget(null);
         }
-        
-        private void SetNewTarget()
+
+        private void SetHuntingTarget(BaseCreature creature)
+        {
+            _huntingTarget = creature;
+            if (_huntingTarget != null)
+            {
+                _creature.Movement.SetSpeed(_creatureData.MoveSpeed);
+                _creature.Movement.SetTarget(_huntingTarget.transform);
+            }
+            else
+            {
+                SetRoamTarget();
+            }
+        }
+
+        private void OnTargetReached()
+        {
+            if (_huntingTarget == null)
+            {
+                SetRoamTarget();
+            }
+        }
+
+        private void SetRoamTarget()
         {
             _creature.Movement.SetSpeed(_creatureData.MoveSpeed);
             Vector2 currentPosition = _creature.transform.position;
