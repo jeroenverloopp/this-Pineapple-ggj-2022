@@ -776,7 +776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnableCreatures:
-  - {fileID: 7148685577671873521, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+  - {fileID: -3374008132007408422, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
   - {fileID: 4367407673905216485, guid: e911f05e61616f4498fe7debe41ba5cb, type: 3}
 --- !u!4 &1251023073
 Transform:

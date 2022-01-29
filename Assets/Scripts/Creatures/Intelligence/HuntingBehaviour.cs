@@ -7,6 +7,7 @@ namespace Creatures.Behaviour
 {
     public class HuntingBehaviour : BaseBehaviour
     {
+        [SerializeField]
         public override int Priority
         {
             get

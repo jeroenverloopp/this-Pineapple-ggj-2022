@@ -50,4 +50,8 @@ public class BaseCreatureData : ScriptableObject
     public bool CanBreed; //Can this creature breed;
     public float BreedingTime; //How long it takes to make the magic happen.
     public float BreedingCooldown; //How long before it can search for a mate again.
+    public float ReproduceGained = 0.1f; // Amount of Reproduce gained per second.
+    public float MaxReproduce = 100;
+    public float StartReproduce = 40;
+
 }
