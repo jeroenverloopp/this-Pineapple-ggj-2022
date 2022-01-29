@@ -23,29 +23,15 @@ public class BaseCreature : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (breedState != BreedState.Idle)
-        {
-            breedTimer -= Time.deltaTime;
-            
-            if (breedTimer <= 0)
-            {
-                if(breedState == BreedState.Breeding)
-                    Hatch();
-                else if (breedState == BreedState.Cooldown)
-                    breedState = BreedState.Idle;
-            }
-        }
+        BreedUpdate();
     }
 
     public virtual void WhenInReach(Collider2D collider)
     {
         if (!collider.isTrigger)
         {
-            if (collider.gameObject.tag.Equals(gameObject.tag) && breedState == BreedState.Idle && creatureData.CanBreed)
-            {
-                if (gameObject.GetInstanceID() > collider.gameObject.GetInstanceID())
-                    StartBreed();
-            }
+            CheckForBreed(collider);
+            CheckForEat(collider);
         }
     }
 
@@ -61,6 +47,21 @@ public class BaseCreature : MonoBehaviour
         breedState = BreedState.Breeding;
         breedTimer = creatureData.BreedingTime;
     }
+    protected void BreedUpdate()
+    {
+        if (breedState != BreedState.Idle)
+        {
+            breedTimer -= Time.deltaTime;
+
+            if (breedTimer <= 0)
+            {
+                if (breedState == BreedState.Breeding)
+                    Hatch();
+                else if (breedState == BreedState.Cooldown)
+                    breedState = BreedState.Idle;
+            }
+        }
+    }
 
     protected void Hatch()
     {
@@ -68,5 +69,23 @@ public class BaseCreature : MonoBehaviour
         var junior = Instantiate(creatureData.Prefab, (new Vector2(transform.position.x, transform.position.y) + new Vector2(Random.Range(-1, 1), Random.Range(-1, 1))), Quaternion.identity);
         breedState = BreedState.Cooldown;
         breedTimer = creatureData.BreedingTime;
+    }
+
+    private void CheckForBreed(Collider2D collider)
+    {
+        if (collider.gameObject.tag.Equals(gameObject.tag) && breedState == BreedState.Idle && creatureData.CanBreed)
+        {
+            if (gameObject.GetInstanceID() > collider.gameObject.GetInstanceID())
+                StartBreed();
+        }
+    }
+
+    private void CheckForEat(Collider2D collider)
+    {
+        if (creatureData.EatsCreatures.Contains(collider.gameObject.GetComponent<BaseCreature>().creatureData))
+        {
+            Debug.Log($"Eat the other!: {collider.transform.name}");
+            Destroy(collider.gameObject);
+        }
     }
 }
