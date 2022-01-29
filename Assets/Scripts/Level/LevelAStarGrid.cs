@@ -20,7 +20,7 @@ namespace Level
         {
             for (int x = 0; x < _grid.GetLength(0); x++)
             {
-                for (int y = 0; y < _grid.GetLength(0); y++)
+                for (int y = 0; y < _grid.GetLength(1); y++)
                 {
                     _grid[x, y] = new LevelNode(x, y);
                 }
@@ -31,7 +31,7 @@ namespace Level
         {
             for (int x = 0; x < _tiles.GetLength(0); x++)
             {
-                for (int y = 0; y < _tiles.GetLength(0); y++)
+                for (int y = 0; y < _tiles.GetLength(1); y++)
                 {
                     var tile = GameObject.Instantiate(_tilePrefab);
                     tile.transform.position = GridToWorldPositionCentered(x, y);

@@ -102,7 +102,7 @@ namespace Creatures
             {
                 foreach (var pos in _waypoints)
                 {
-                    Gizmos.DrawSphere(pos, 2);
+                    Gizmos.DrawSphere(pos, .2f);
                 }
             }
         }

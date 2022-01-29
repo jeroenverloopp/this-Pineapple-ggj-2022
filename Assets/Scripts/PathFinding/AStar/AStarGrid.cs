@@ -8,6 +8,7 @@ namespace PathFinding.AStar
     {
         public Vector2 NodeSize => _nodeSize;
         public Vector2Int NodeCount => _nodeCount;
+        public Vector2 GridSize => _gridSize;
         public int TotalNodes => _nodeCount.x * _nodeCount.y;
 
         public Vector2 Center => _position + _gridSize / 2;
@@ -146,7 +147,7 @@ namespace PathFinding.AStar
         {
             for (int x = 0; x < _grid.GetLength(0); x++)
             {
-                for (int y = 0; y < _grid.GetLength(0); y++)
+                for (int y = 0; y < _grid.GetLength(1); y++)
                 {
                     _grid[x, y] = new AStarNode(x, y);
                 }

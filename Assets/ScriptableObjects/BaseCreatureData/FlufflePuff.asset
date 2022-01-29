@@ -17,7 +17,8 @@ MonoBehaviour:
   - {fileID: 3930782315483698955, guid: c89c1b3519ea1e041af0be5e38552e84, type: 3}
   - {fileID: 5716145341915161023, guid: a503636c5d3ebce47b79cb57239b7495, type: 3}
   Nutrition: 50
-  MoveSpeed: 5
+  TimeToGetEaten: 5
+  MoveSpeed: 1
   MinIdleTime: 0.5
   MaxIdleTime: 1
   IsAfraidOfCreatures:
@@ -32,9 +33,12 @@ MonoBehaviour:
   StartHunger: 0
   HungerGained: 1
   MaxHunger: 100
+  HuntHunger: 50
+  HuntingPriorityIncrease: 0.5
+  FindFoodRange: 0
+  EatRange: 4
   EatsCreatures: []
   EatsGround: 
-  FindFoodRange: 0
   CanBreed: 0
   BreedingTime: 3
   BreedingCooldown: 0
