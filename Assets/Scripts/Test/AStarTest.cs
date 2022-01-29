@@ -10,13 +10,15 @@ public class AStarTest : MonoBehaviour
     [SerializeField] private LayerMask _wallsMask;
     [SerializeField] private Unit _testUnitPrefab;
     [SerializeField] private Transform _target;
+    [SerializeField] private LevelTile _tilePrefab;
     private LevelAStarGrid _grid;
 
     private void Awake()
     {
-        _grid = new LevelAStarGrid(new Vector2(-50,-50), new Vector2(100, 100), new Vector2Int(100, 100));
+        _grid = new LevelAStarGrid(new Vector2(-50,-50), new Vector2(100, 100), new Vector2Int(50, 50), _tilePrefab);
         _grid.SetWalkableByCollision(_wallsMask, 2);
         _grid.SetNeighbours();
+        _grid.MakeLevelTiles();
     }
 
     private void CreateUnit()

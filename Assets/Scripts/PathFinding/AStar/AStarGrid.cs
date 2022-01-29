@@ -14,6 +14,8 @@ namespace PathFinding.AStar
         public Vector2 TopRight => _position + _gridSize;
         public Vector2 LeftBottom => _position;
 
+        public virtual AStarNode this[int x, int y] => InBounds(x, y) ? _grid[x, y] : null;
+
         protected AStarNode[,] _grid;
         protected Vector2 _position;
         protected Vector2 _gridSize;
@@ -53,28 +55,6 @@ namespace PathFinding.AStar
         public bool InBounds(int x, int y)
         {
             return x >= 0 && x < _nodeCount.x && y >= 0 && y < _nodeCount.y;
-        }
-
-        public List<AStarNode> GetNodeNeighbours(AStarNode aStarNode)
-        {
-            List<AStarNode> neighbours = new List<AStarNode>();
-            for (int x = -1; x <= 1; x++)
-            {
-                for (int y = -1; y <= 1; y++)
-                {
-                    if (x == 0 && y == 0)
-                    {
-                        continue;
-                    }
-
-                    if (InBounds(aStarNode.GridX + x, aStarNode.GridY + y))
-                    {
-                        neighbours.Add(_grid[aStarNode.GridX + x, aStarNode.GridY + y]);
-                    }
-                }
-            }
-
-            return neighbours;
         }
 
         public AStarNode NodeFromWorldPosition(Vector2 worldPosition)
@@ -148,7 +128,7 @@ namespace PathFinding.AStar
                         }
                         int xPos = node.GridX + x;
                         int yPos = node.GridY + y;
-                        if (InBounds(xPos, yPos) && _grid[xPos,yPos].Walkable)
+                        if (InBounds(xPos, yPos))
                         {
                             node.AddNeighbour(_grid[xPos,yPos]);
                         }

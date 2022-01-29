@@ -40,7 +40,7 @@ namespace PathFinding.AStar
                     }
 
 
-                    foreach (AStarNode neighbour in currentAStarNode.Neighbours)
+                    foreach (AStarNode neighbour in currentAStarNode.WalkableNeighbours)
                     {
                         if (neighbour.Walkable == false || closedSet.Contains(neighbour))
                         {

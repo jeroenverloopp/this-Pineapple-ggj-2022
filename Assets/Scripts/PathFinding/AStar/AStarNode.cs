@@ -13,6 +13,7 @@ namespace PathFinding.AStar
         public AStarNode Parent { get; private set; }
 
         public List<AStarNode> Neighbours { get; private set; } = new List<AStarNode>();
+        public List<AStarNode> WalkableNeighbours { get; private set; } = new List<AStarNode>();
 
         public readonly int GridX, GridY;
 
@@ -35,6 +36,10 @@ namespace PathFinding.AStar
         public void AddNeighbour(AStarNode node)
         {
             Neighbours.Add(node);
+            if (node.Walkable)
+            {
+                WalkableNeighbours.Add(node);
+            }
         }
         
         public void SetWalkable(bool walkable)
