@@ -6,7 +6,7 @@ namespace Creatures.Behaviour
     {
         public override int Priority => 1;
         
-        public override BehaviourState StageSuggestion => BehaviourState.Idle;
+        public override BehaviourState StateSuggestion => BehaviourState.Idle;
         
         public override bool IsEligibleForActivation => true;
 

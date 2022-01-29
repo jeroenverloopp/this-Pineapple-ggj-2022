@@ -1,4 +1,3 @@
-using System;
 using Creatures;
 using Creatures.Behaviour;
 using UnityEngine;
@@ -8,6 +7,8 @@ public class BaseCreature : MonoBehaviour
 {
     [HideInInspector]
     public float MoveSpeed;
+
+    public ColliderProxy reachCollider, sightCollider;
 
     public BaseCreatureData creatureData;
 

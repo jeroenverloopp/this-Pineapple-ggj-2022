@@ -142,6 +142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 0
+  reachCollider: {fileID: 2544713620655136030}
+  sightCollider: {fileID: 1822426480808160162}
   creatureData: {fileID: 11400000, guid: 3a84431675253df449819647cf2fc059, type: 2}
   breedState: 1
   _movement: {fileID: 5978678076489527874}

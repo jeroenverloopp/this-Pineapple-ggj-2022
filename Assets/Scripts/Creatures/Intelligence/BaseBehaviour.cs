@@ -7,7 +7,7 @@ namespace Creatures.Behaviour
     {
         
         public abstract int Priority { get; }
-        public abstract BehaviourState StageSuggestion { get; }
+        public abstract BehaviourState StateSuggestion { get; }
         public abstract bool IsEligibleForActivation { get; }
         
         public Action<BaseBehaviour> OnActivationRequest;
