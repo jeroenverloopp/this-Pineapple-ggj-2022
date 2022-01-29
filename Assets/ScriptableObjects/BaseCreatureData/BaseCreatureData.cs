@@ -29,7 +29,7 @@ public class BaseCreatureData : ScriptableObject
     public bool KeepFleeingAfterLosingPredator = false; //If true the creature keeps running even tho it lost its predator.
     
     [Header("Roaming")]
-    public float FindMoveTargetRange = 10f;
+    public float RoamRange = 20f;
     public float MinRoamingTime = 5;
     public float MaxRoamingTime = 15;
     

@@ -22,7 +22,7 @@ namespace Level
             Grid = new LevelAStarGrid(_gridPosition, _gridSize, _nodeCount, _tilePrefab);
             Grid.SetWalkableByCollision(_collisionMask, 2);
             Grid.SetNeighbours();
-            //_grid.MakeLevelTiles();
+            //Grid.MakeLevelTiles();
         }
     }
 }

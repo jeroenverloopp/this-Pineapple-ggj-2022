@@ -2,7 +2,7 @@
 
 namespace Creatures.Behaviour
 {
-    public class RoamBehaviour : BaseBehaviour
+    public class RoamingBehaviour : BaseBehaviour
     {
         public override int Priority => 1;
         
@@ -10,8 +10,16 @@ namespace Creatures.Behaviour
         
         public override bool IsEligibleForActivation => true;
         
+        
+        private float _durationTimer = 0;
+        
         protected override void UpdateWhenActive()
         {
+            _durationTimer = Mathf.Clamp(_durationTimer - Time.deltaTime, 0, _durationTimer);
+            if (_durationTimer <= 0)
+            {
+                OnDeactivationRequest?.Invoke(this);
+            }
         }
 
         protected override void UpdateWhenInactive()
@@ -24,6 +32,8 @@ namespace Creatures.Behaviour
             base.SetActive(active);
             if (active)
             {
+                _durationTimer = Random.Range(_creatureData.MinRoamingTime, _creatureData.MaxRoamingTime);
+                Debug.Log(_durationTimer);
                 SetNewTarget();
                 _creature.Movement.OnTargetReached += SetNewTarget;
                 _creature.Movement.OnSetTargetFailed += SetNewTarget;
@@ -38,7 +48,10 @@ namespace Creatures.Behaviour
         private void SetNewTarget()
         {
             _creature.Movement.SetSpeed(_creatureData.MoveSpeed);
-            _creature.Movement.SetTarget(new Vector2(Random.Range(-50,50),Random.Range(-50,50)));
+            Vector2 currentPosition = _creature.transform.position;
+            float range = _creatureData.RoamRange;
+            Vector2 offset = new Vector2(Random.Range(-range,range),Random.Range(-range,range));
+            _creature.Movement.SetTarget(currentPosition + offset);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Creatures
         
         public void Stop()
         {
-            StopCoroutine(FollowPath());
+            StopCoroutine(nameof(FollowPath));
             _waypoints = null;
         }
         
@@ -40,11 +40,15 @@ namespace Creatures
 
         private void SetPathToTarget(List<Vector2> waypoints, bool success)
         {
+            if (this == null)
+            {
+                return;
+            }
             if (success)
             {
                 Stop();
                 _waypoints = waypoints;
-                StartCoroutine(FollowPath());
+                StartCoroutine(nameof(FollowPath));
             }
             else
             {
@@ -54,26 +58,43 @@ namespace Creatures
 
         private IEnumerator FollowPath()
         {
-            Vector2 currentWaypoint = _waypoints[0];
-            int targetIndex = 0;
-
-            while (true)
+            if (_waypoints != null && _waypoints.Count > 0)
             {
-                Vector2 position = transform.position;
-                if (position == currentWaypoint)
+                Vector2 currentWaypoint = _waypoints[0];
+                int targetIndex = 0;
+
+                while (true)
                 {
-                    targetIndex++;
-                    if (targetIndex >= _waypoints.Count)
+                    Vector2 position = transform.position;
+                    if (Vector2.Distance(position, currentWaypoint) < 0.1f)
                     {
-                        OnTargetReached?.Invoke();
-                        yield break;
+                        targetIndex++;
+                        if (targetIndex >= _waypoints.Count)
+                        {
+                            OnTargetReached?.Invoke();
+                            yield break;
+                        }
+
+                        currentWaypoint = _waypoints[targetIndex];
                     }
-                    currentWaypoint = _waypoints[targetIndex];
+
+                    //Debug.Log($"position: {position} - target: {currentWaypoint} - speed: {_speed * Time.deltaTime}");
+
+                    Vector2 nextPos = Vector2.MoveTowards(position, currentWaypoint, _speed * Time.deltaTime);
+                    transform.position = nextPos;
+                    yield return null;
                 }
-                
-                Vector2 nextPos = Vector2.MoveTowards(position, currentWaypoint, _speed*Time.deltaTime);
-                transform.position = nextPos;
-                yield return null;
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (_waypoints != null)
+            {
+                foreach (var pos in _waypoints)
+                {
+                    Gizmos.DrawSphere(pos, 2);
+                }
             }
         }
     }

@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 0
-  creatureData: {fileID: 11400000, guid: 356b5290b81caa245a1d8771a085c5f4, type: 2}
+  creatureData: {fileID: 11400000, guid: 3a84431675253df449819647cf2fc059, type: 2}
   breedState: 1
   _movement: {fileID: 5978678076489527874}
 --- !u!114 &5978678076489527874

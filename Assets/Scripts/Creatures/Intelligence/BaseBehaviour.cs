@@ -26,7 +26,6 @@ namespace Creatures.Behaviour
 
         public virtual void SetActive(bool active)
         {
-            Debug.Log($"SetActive: {active}");
             Active = active;
         }
 

@@ -41,7 +41,7 @@ namespace Level
                 }
             }
             
-            MakeBiomes();
+            //MakeBiomes();
         }
 
         public void MakeBiomes()

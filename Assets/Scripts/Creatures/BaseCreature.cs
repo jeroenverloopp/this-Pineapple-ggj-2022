@@ -38,10 +38,7 @@ public class BaseCreature : MonoBehaviour
         breedTimer = creatureData.BreedingCooldown;
         
         _behaviourManager = gameObject.AddComponent<BehaviourManager>();
-        if (creatureData.Behaviours == null)
-        {
-            Debug.Log(GetType());
-        }
+        Debug.Log($"_behaviourManager : {_behaviourManager}");
         _behaviourManager.Init(creatureData.Behaviours , creatureData, this);
     }
 

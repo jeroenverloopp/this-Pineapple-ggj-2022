@@ -101,6 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1427206570074690250}
   - component: {fileID: 4367407673905216485}
+  - component: {fileID: -6791479235226565352}
   - component: {fileID: 6027715558814237968}
   - component: {fileID: 5703350732835644778}
   - component: {fileID: 907425081930183608}
@@ -143,6 +144,19 @@ MonoBehaviour:
   MoveSpeed: 0
   creatureData: {fileID: 11400000, guid: 26898710e319dfa4caf784fca6fd9a03, type: 2}
   breedState: 1
+  _movement: {fileID: -6791479235226565352}
+--- !u!114 &-6791479235226565352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5703350732835644779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb40fe47ec4487181797d11c55f4771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &6027715558814237968
 SpriteRenderer:
   m_ObjectHideFlags: 0

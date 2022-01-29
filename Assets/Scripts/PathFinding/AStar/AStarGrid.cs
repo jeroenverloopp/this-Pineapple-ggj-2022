@@ -52,6 +52,11 @@ namespace PathFinding.AStar
             }
         }
 
+        
+        public bool InBounds(Vector2Int position)
+        {
+            return InBounds(position.x, position.y);
+        }
         public bool InBounds(int x, int y)
         {
             return x >= 0 && x < _nodeCount.x && y >= 0 && y < _nodeCount.y;

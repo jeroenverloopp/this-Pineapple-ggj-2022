@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Level;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,8 +16,12 @@ namespace Creatures
             if (context.performed)
             {
                 Vector2 position = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-                BaseCreature creature = Instantiate(_spawnableCreatures[_selectedCreature]);
-                creature.transform.position = position;
+                Vector2Int gridPos = LevelManager.Instance.Grid.WorldToGridPosition(position);
+                if (LevelManager.Instance.Grid.InBounds(gridPos) && LevelManager.Instance.Grid[gridPos.x,gridPos.y].Walkable)
+                {
+                    BaseCreature creature = Instantiate(_spawnableCreatures[_selectedCreature]);
+                    creature.transform.position = position;
+                }
             }
         }
 

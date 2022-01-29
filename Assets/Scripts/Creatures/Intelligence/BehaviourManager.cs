@@ -29,6 +29,7 @@ namespace Creatures.Behaviour
                 var component = (BaseBehaviour)gameObject.AddComponent(behaviour.GetType());
                 component.Set(data, creature);
                 component.OnActivationRequest += CheckForActivationOverride;
+                component.OnDeactivationRequest += CheckForDeactivation;
                 _behaviourList.Add(component);
             }
         }
@@ -43,6 +44,16 @@ namespace Creatures.Behaviour
             }
         }
 
+        private void CheckForDeactivation(BaseBehaviour overrideBehaviour)
+        {
+            if (_activeBehaviour == overrideBehaviour)
+            {
+                _activeBehaviour.SetActive(false);
+                Debug.Log($"Setting {_activeBehaviour.GetType().Name} inactive");
+                _activeBehaviour = null;
+            }
+        }
+
 
         private void Update()
         {
@@ -52,7 +63,7 @@ namespace Creatures.Behaviour
                 if (_activeBehaviour != null)
                 {
                     _activeBehaviour.SetActive(true);
-                    Debug.Log(_activeBehaviour.Active);
+                    Debug.Log($"Setting {_activeBehaviour.GetType().Name} active");
                 }
             }
         }
@@ -80,7 +91,8 @@ namespace Creatures.Behaviour
 
             if (foundBehaviours.Count > 0)
             {
-                return foundBehaviours[Random.Range(0, foundBehaviours.Count)];
+                var chosen = foundBehaviours[Random.Range(0, foundBehaviours.Count)];
+                return chosen;
             }
 
             return null;

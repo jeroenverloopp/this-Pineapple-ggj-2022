@@ -27,7 +27,8 @@ namespace PathFinding.AStar
 
             List<Vector2> pathToTarget = null;
             
-            if(startAStarNode.Walkable && targetAStarNode.Walkable){
+            if(targetAStarNode.Walkable){
+                
                 while (openSet.Count > 0)
                 {
                     AStarNode currentAStarNode = openSet.RemoveFirstItem();
