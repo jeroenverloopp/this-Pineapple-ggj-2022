@@ -12,10 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cea6c8a6bca67f49987c8428354895c, type: 3}
   m_Name: FlufflePuff
   m_EditorClassIdentifier: 
+  Prefab: {fileID: 3276730980003007728, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+  Behaviours:
+  - {fileID: 5716145341915161023, guid: c89c1b3519ea1e041af0be5e38552e84, type: 3}
+  Nutrition: 50
   MoveSpeed: 5
-  CanBreed: 1
-  BreedingTime: 3
-  EatsCreatures: []
+  MinIdleTime: 0
+  MaxIdleTime: 5
   IsAfraidOfCreatures:
   - {fileID: 11400000, guid: 26898710e319dfa4caf784fca6fd9a03, type: 2}
-  Prefab: {fileID: 3276730980003007728, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+  FleeSpeed: 2
+  MaxFleeDuration: 10
+  FleeCoolDown: 0
+  KeepFleeingAfterLosingPredator: 0
+  FindMoveTargetRange: 10
+  MinRoamingTime: 5
+  MaxRoamingTime: 15
+  StartHunger: 0
+  HungerGained: 1
+  MaxHunger: 100
+  EatsCreatures: []
+  EatsGround: 
+  FindFoodRange: 0
+  CanBreed: 0
+  BreedingTime: 3
+  BreedingCooldown: 0

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class FluffCreature : BaseCreature
 {
+    /*
     public override void WhenInReach(Collider2D collider)
     {
         base.WhenInReach(collider);
@@ -21,4 +22,5 @@ public class FluffCreature : BaseCreature
             // Move away from current target
         }
     }
+    */
 }

@@ -43,3 +43,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Tiles
+    uniqueID: 1700235883
+    locked: 0
+  - name: Walls
+    uniqueID: 3748119957
+    locked: 0
+  - name: Creatures
+    uniqueID: 2685495455
+    locked: 0

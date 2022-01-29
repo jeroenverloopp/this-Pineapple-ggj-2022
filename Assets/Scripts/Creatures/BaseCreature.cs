@@ -1,4 +1,8 @@
+using System;
+using Creatures;
+using Creatures.Behaviour;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BaseCreature : MonoBehaviour
 {
@@ -11,20 +15,40 @@ public class BaseCreature : MonoBehaviour
     protected BreedState breedState = BreedState.Cooldown;
     protected float breedTimer;
     protected enum BreedState { Breeding, Cooldown, Idle };
-    protected enum BehaviourState {Idle, Roaming, Fleeing, LookingForFood, Eating, FindingMate, Breeding}
+
+
+    public MovementComponent Movement => _movement;
+
+    [SerializeField] private MovementComponent _movement;
+    private BehaviourManager _behaviourManager;
+
+    private void Awake()
+    {
+        if (_movement == null)
+        {
+            Debug.LogError("Creature has no movement Component");
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         MoveSpeed = creatureData.MoveSpeed;
         breedState = BreedState.Cooldown;
-        breedTimer = creatureData.BreedingTime;
+        breedTimer = creatureData.BreedingCooldown;
+        
+        _behaviourManager = gameObject.AddComponent<BehaviourManager>();
+        if (creatureData.Behaviours == null)
+        {
+            Debug.Log(GetType());
+        }
+        _behaviourManager.Init(creatureData.Behaviours , creatureData, this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        BreedUpdate();
+        //BreedUpdate();
     }
 
     public virtual void WhenInReach(Collider2D collider)
@@ -38,13 +62,15 @@ public class BaseCreature : MonoBehaviour
 
     public virtual void WhenInSight(Collider2D collider)
     {
-        if(!collider.isTrigger)
-            Debug.Log($"{transform.name} has {collider.transform.name} in sight!");
+        if (!collider.isTrigger)
+        {
+            //Debug.Log($"{transform.name} has {collider.transform.name} in sight!");
+        }
     }
 
     protected void StartBreed()
     {
-        Debug.Log($"The breeding has started for {transform.name}");
+        //Debug.Log($"The breeding has started for {transform.name}");
         breedState = BreedState.Breeding;
         breedTimer = creatureData.BreedingTime;
     }
@@ -66,11 +92,11 @@ public class BaseCreature : MonoBehaviour
 
     protected void Hatch()
     {
-        Debug.Log("HATCH");
+        //Debug.Log("HATCH");
         // Instantiate new Fluff Creature somewhere close by
         var junior = Instantiate(creatureData.Prefab, (new Vector2(transform.position.x, transform.position.y) + new Vector2(Random.Range(-1, 1), Random.Range(-1, 1))), Quaternion.identity);
         breedState = BreedState.Cooldown;
-        breedTimer = creatureData.BreedingTime;
+        breedTimer = creatureData.BreedingCooldown;
     }
 
     private void CheckForBreed(Collider2D collider)
@@ -84,7 +110,13 @@ public class BaseCreature : MonoBehaviour
 
     private void CheckForEat(Collider2D collider)
     {
-        if (creatureData.EatsCreatures.Contains(collider.gameObject.GetComponent<BaseCreature>().creatureData))
+        var creature = collider.gameObject.GetComponent<BaseCreature>();
+        if (creature == null)
+        {
+            return;
+        }
+        
+        if (creatureData.EatsCreatures.Contains(creature.creatureData))
         {
             Debug.Log($"Eat the other!: {collider.transform.name}");
             Destroy(collider.gameObject);

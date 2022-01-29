@@ -4,42 +4,51 @@ using System.Collections.Generic;
 using Level;
 using PathFinding.AStar;
 using UnityEngine;
-using Util;
-using Random = UnityEngine.Random;
 
-namespace Test
+namespace Creatures
 {
-    public class Unit : MonoBehaviour
+    public class MovementComponent : MonoBehaviour
     {
-
-        private Transform _target;
+        
         private float _speed;
         private List<Vector2> _waypoints;
-        private void Awake()
+
+        public Action OnTargetReached;
+        public Action OnSetTargetFailed;
+        
+        public void Stop()
         {
-            _speed = Random.Range(10.0f, 15.0f);
+            StopCoroutine(FollowPath());
+            _waypoints = null;
+        }
+        
+        public void SetTarget(Transform target)
+        {
+            SetTarget(target.position);
         }
 
-
-        public void SetTarget(LevelAStarGrid aStarGrid, Transform target)
+        public void SetSpeed(float speed)
         {
-            _target = target;
-            Vector2 from = transform.position;
-            Vector2 to = target.position;
-            PathRequestManager.RequestPath(aStarGrid, from, to , SetPathToTarget);
+            _speed = speed;
+        }
+        
+        public void SetTarget(Vector2 targetPosition)
+        {
+            Vector2 fromPosition = transform.position;
+            PathRequestManager.RequestPath(LevelManager.Instance.Grid, fromPosition, targetPosition , SetPathToTarget);
         }
 
         private void SetPathToTarget(List<Vector2> waypoints, bool success)
         {
             if (success)
             {
+                Stop();
                 _waypoints = waypoints;
-                StopCoroutine(FollowPath());
                 StartCoroutine(FollowPath());
             }
             else
             {
-                Destroy(gameObject);
+                OnSetTargetFailed?.Invoke();
             }
         }
 
@@ -56,28 +65,15 @@ namespace Test
                     targetIndex++;
                     if (targetIndex >= _waypoints.Count)
                     {
-                        Destroy(gameObject);
+                        OnTargetReached?.Invoke();
                         yield break;
                     }
                     currentWaypoint = _waypoints[targetIndex];
                 }
-
-                //Debug.Log($"{position} -> {currentWaypoint}");
+                
                 Vector2 nextPos = Vector2.MoveTowards(position, currentWaypoint, _speed*Time.deltaTime);
                 transform.position = nextPos;
                 yield return null;
-            }
-        }
-
-        private void OnDrawGizmos()
-        {
-            if (_waypoints == null) return;
-            Gizmos.color = Color.magenta;
-            foreach (var wp in _waypoints)
-            {
-                Vector3 pos = wp;
-                
-                Gizmos.DrawSphere(pos, 1);
             }
         }
     }

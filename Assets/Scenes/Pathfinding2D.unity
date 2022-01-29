@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 75570505}
   - component: {fileID: 75570504}
   m_Layer: 6
-  m_Name: Square (1)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,8 +220,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -546847339
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1c1ba5217af65954785919b032b0665b, type: 3}
   m_Color: {r: 1, g: 0.514151, b: 0.514151, a: 1}
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 868791319}
   - component: {fileID: 868791318}
   m_Layer: 6
-  m_Name: Square (4)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -454,8 +454,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -546847339
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1c1ba5217af65954785919b032b0665b, type: 3}
   m_Color: {r: 1, g: 0.514151, b: 0.514151, a: 1}
@@ -484,7 +484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1055433937
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 1220920607}
   - component: {fileID: 1220920606}
   m_Layer: 6
-  m_Name: Square (5)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -649,8 +649,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -546847339
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1c1ba5217af65954785919b032b0665b, type: 3}
   m_Color: {r: 1, g: 0.514151, b: 0.514151, a: 1}
@@ -663,6 +663,136 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1251023070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1251023073}
+  - component: {fileID: 1251023072}
+  - component: {fileID: 1251023071}
+  m_Layer: 0
+  m_Name: CreatureSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1251023071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251023070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d4c4f63cb8eff3f468fc4fd8b6a3cd24, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 64fbdc41-12b4-4eb2-b126-e0c3618cd601
+    m_ActionName: Creature/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1251023072}
+        m_TargetAssemblyTypeName: Creatures.CreatureSpawner, Assembly-CSharp
+        m_MethodName: NextCreature
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 271447f4-0618-414e-ab0d-9f41f9ef581d
+    m_ActionName: PathFindingTest/Create S Unit[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1251023072}
+        m_TargetAssemblyTypeName: Creatures.CreatureSpawner, Assembly-CSharp
+        m_MethodName: PreviousCreature
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 13e64095-cb55-4b96-b3e9-c636a613e8e0
+    m_ActionName: PathFindingTest/Create A Unit[/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1251023072}
+        m_TargetAssemblyTypeName: Creatures.CreatureSpawner, Assembly-CSharp
+        m_MethodName: SpawnCreature
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 986dd0a7-1abe-45ea-9028-7cd45a92f84e
+    m_ActionName: PathFindingTest/MouseInput[/Mouse/leftButton]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PathFindingTest
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1251023072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251023070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce246fd17ee945dfa01e459f219749ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnableCreatures:
+  - {fileID: 7148685577671873521, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+  - {fileID: 4367407673905216485, guid: e911f05e61616f4498fe7debe41ba5cb, type: 3}
+--- !u!4 &1251023073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251023070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1370453158
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,7 +805,7 @@ GameObject:
   - component: {fileID: 1370453161}
   - component: {fileID: 1370453160}
   m_Layer: 6
-  m_Name: Square (3)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -760,8 +890,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -546847339
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1c1ba5217af65954785919b032b0665b, type: 3}
   m_Color: {r: 1, g: 0.514151, b: 0.514151, a: 1}
@@ -786,7 +916,7 @@ GameObject:
   - component: {fileID: 1644878145}
   - component: {fileID: 1644878144}
   m_Layer: 6
-  m_Name: Square (2)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -871,8 +1001,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -546847339
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1c1ba5217af65954785919b032b0665b, type: 3}
   m_Color: {r: 1, g: 0.514151, b: 0.514151, a: 1}
@@ -897,7 +1027,7 @@ GameObject:
   - component: {fileID: 1696256415}
   - component: {fileID: 1696256414}
   m_Layer: 6
-  m_Name: Square (6)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -982,8 +1112,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -546847339
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1c1ba5217af65954785919b032b0665b, type: 3}
   m_Color: {r: 1, g: 0.514151, b: 0.514151, a: 1}
@@ -1005,33 +1135,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1723607678}
-  - component: {fileID: 1723607677}
   - component: {fileID: 1723607679}
   m_Layer: 0
-  m_Name: AStarTest
+  m_Name: LevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1723607677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1723607676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d14ed0c32be438e8fd315c090ba7290, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wallsMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _testUnitPrefab: {fileID: 191499013312888557, guid: f511c6879da751b4a8e85402acea5e42, type: 3}
-  _target: {fileID: 349308339}
-  _tilePrefab: {fileID: -4431428620986777944, guid: b7cdefecc2c88834d9bda9ce15349eea, type: 3}
 --- !u!4 &1723607678
 Transform:
   m_ObjectHideFlags: 0
@@ -1056,63 +1167,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1723607676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e96fac13b88475b81b2d87838efcd3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: d4c4f63cb8eff3f468fc4fd8b6a3cd24, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 64fbdc41-12b4-4eb2-b126-e0c3618cd601
-    m_ActionName: Creature/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1723607677}
-        m_TargetAssemblyTypeName: AStarTest, Assembly-CSharp
-        m_MethodName: CreateSUnit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 271447f4-0618-414e-ab0d-9f41f9ef581d
-    m_ActionName: PathFindingTest/Create S Unit[/Keyboard/s]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1723607677}
-        m_TargetAssemblyTypeName: AStarTest, Assembly-CSharp
-        m_MethodName: CreateAUnit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 13e64095-cb55-4b96-b3e9-c636a613e8e0
-    m_ActionName: PathFindingTest/Create A Unit[/Keyboard/a]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: PathFindingTest
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  _collisionMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _tilePrefab: {fileID: -4431428620986777944, guid: b7cdefecc2c88834d9bda9ce15349eea, type: 3}
+  _gridPosition: {x: -50, y: -50}
+  _gridSize: {x: 100, y: 100}
+  _nodeCount: {x: 200, y: 200}
 --- !u!1 &1923047894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,7 +1189,7 @@ GameObject:
   - component: {fileID: 1923047897}
   - component: {fileID: 1923047896}
   m_Layer: 6
-  m_Name: Square
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1210,8 +1274,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -546847339
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1c1ba5217af65954785919b032b0665b, type: 3}
   m_Color: {r: 1, g: 0.514151, b: 0.514151, a: 1}

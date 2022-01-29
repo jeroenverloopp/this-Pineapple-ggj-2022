@@ -34,7 +34,7 @@ namespace Level
                 for (int y = 0; y < _tiles.GetLength(0); y++)
                 {
                     var tile = GameObject.Instantiate(_tilePrefab);
-                    tile.transform.position = GridToWorldPosition(x, y);
+                    tile.transform.position = GridToWorldPositionCentered(x, y);
                     var node = this[x, y];
                     tile.SetType(node.Walkable? GroundType.Grass : GroundType.Dirt);
                     _tiles[x, y] = tile;

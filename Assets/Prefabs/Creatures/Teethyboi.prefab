@@ -100,9 +100,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1427206570074690250}
+  - component: {fileID: 4367407673905216485}
   - component: {fileID: 6027715558814237968}
   - component: {fileID: 5703350732835644778}
-  - component: {fileID: 4367407673905216485}
   - component: {fileID: 907425081930183608}
   m_Layer: 0
   m_Name: Teethyboi
@@ -128,6 +128,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4367407673905216485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5703350732835644779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d0b826e8ed4284fa2e9b8bc7fb8808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 0
+  creatureData: {fileID: 11400000, guid: 26898710e319dfa4caf784fca6fd9a03, type: 2}
+  breedState: 1
 --- !u!212 &6027715558814237968
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -166,8 +181,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1609471841
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.7019608, g: 0.03441316, b: 0.052872483, a: 1}
@@ -201,20 +216,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4367407673905216485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5703350732835644779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8d0b826e8ed4284fa2e9b8bc7fb8808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 0
-  creatureData: {fileID: 11400000, guid: 26898710e319dfa4caf784fca6fd9a03, type: 2}
 --- !u!61 &907425081930183608
 BoxCollider2D:
   m_ObjectHideFlags: 0

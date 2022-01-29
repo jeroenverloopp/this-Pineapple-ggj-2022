@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Creatures.Behaviour;
 using Level;
 using UnityEngine;
 
@@ -8,7 +9,10 @@ public class BaseCreatureData : ScriptableObject
     
     [Header("Visuals")]
     public GameObject Prefab;
-    
+
+    [Header("Behaviour")] 
+    public List<BaseBehaviour> Behaviours;
+
     [Header("Stats")]
     public float Nutrition = 50; //Amount of food gained when this creature is eaten.
     public float MoveSpeed; //The speed when normally walking
