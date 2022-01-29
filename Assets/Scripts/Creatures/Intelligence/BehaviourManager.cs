@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,8 +14,12 @@ namespace Creatures.Behaviour
         [SerializeField]//only for debug
         private BaseBehaviour _activeBehaviour;
 
+        private BaseCreature _creature;
+
         public void Init(List<BaseBehaviour> behaviourList , BaseCreatureData data, BaseCreature creature)
         {
+
+            _creature = creature;
             
             if (behaviourList == null)
             {
@@ -49,7 +54,6 @@ namespace Creatures.Behaviour
             if (_activeBehaviour == overrideBehaviour)
             {
                 _activeBehaviour.SetActive(false);
-                Debug.Log($"Setting {_activeBehaviour.GetType().Name} inactive");
                 _activeBehaviour = null;
             }
         }
@@ -63,7 +67,14 @@ namespace Creatures.Behaviour
                 if (_activeBehaviour != null)
                 {
                     _activeBehaviour.SetActive(true);
-                    Debug.Log($"Setting {_activeBehaviour.GetType().Name} active");
+                }
+            }
+
+            if (_activeBehaviour != null)
+            {
+                if (_creature.State != _activeBehaviour.StateSuggestion)
+                {
+                    _creature.SetState(_activeBehaviour.StateSuggestion);
                 }
             }
         }
@@ -72,27 +83,15 @@ namespace Creatures.Behaviour
 
         private BaseBehaviour FindBehaviourEligibleForActivation()
         {
-            List<BaseBehaviour> foundBehaviours = new List<BaseBehaviour>();
-            int currentPriority = -1;
-
-            foreach (var behaviour in _behaviourList)
+            List<BaseBehaviour> foundBehaviours = _behaviourList.Where(x => x.IsEligibleForActivation).ToList();
+            if (foundBehaviours.Count > 0)
             {
-                if (behaviour.Priority > currentPriority)
-                {
-                    foundBehaviours.Clear();
-                    foundBehaviours.Add(behaviour);
-                    currentPriority = behaviour.Priority;
-                }
-                else if (behaviour.Priority == currentPriority)
-                {
-                    foundBehaviours.Add(behaviour);
-                }
+                foundBehaviours = foundBehaviours.Where(x => x.Priority == foundBehaviours[0].Priority).ToList();
             }
 
             if (foundBehaviours.Count > 0)
             {
-                var chosen = foundBehaviours[Random.Range(0, foundBehaviours.Count)];
-                return chosen;
+                return foundBehaviours[Random.Range(0, foundBehaviours.Count)];
             }
 
             return null;
