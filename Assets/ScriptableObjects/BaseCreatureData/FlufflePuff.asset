@@ -46,4 +46,4 @@ MonoBehaviour:
   BreedingCooldown: 10
   ReproduceGained: 1
   MaxReproduce: 100
-  StartReproduce: 40
+  StartReproduce: 25

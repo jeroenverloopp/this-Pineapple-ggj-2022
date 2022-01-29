@@ -11,12 +11,18 @@ namespace Creatures.Behaviour
 
         public override BehaviourState StateSuggestion => BehaviourState.Breeding;
 
-        protected enum BreedState { Breeding, Cooldown, Idle };
+        protected enum BreedState { Cooldown, Idle, Breeding, };
 
         [SerializeField]
         private BreedState breedState = BreedState.Cooldown;
 
-        public override bool IsEligibleForActivation => breedState == BreedState.Idle && mateInReach && _creatureData.CanBreed;
+        public override bool IsEligibleForActivation
+        {
+            get
+            {
+                return breedState == BreedState.Idle && mateInReach && _creatureData.CanBreed && _creature.Reproduce > 50;
+            }
+        }
         
         private float _durationTimer = 0;
 
@@ -73,7 +79,6 @@ namespace Creatures.Behaviour
             }
             else
             {
-                GoInCoolDown();
                 _creature.reachCollider.OnTriggerEnter2DAction.AddListener(CheckForMateInReach);
                 _creature.reachCollider.OnTriggerExit2DAction.AddListener(CheckForMateLeaveReach);
             }
@@ -92,7 +97,7 @@ namespace Creatures.Behaviour
             breedState = BreedState.Cooldown;
             _durationTimer = _creatureData.BreedingCooldown;
 
-            OnDeactivationRequest?.Invoke(this);
+            OnDeactivationRequest.Invoke(this);
         }
 
         private void CheckForMateInReach(Collider2D collider)

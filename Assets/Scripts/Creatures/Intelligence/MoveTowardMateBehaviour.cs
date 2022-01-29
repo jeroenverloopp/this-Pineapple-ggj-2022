@@ -11,7 +11,7 @@ namespace Creatures.Behaviour
 
         public override BehaviourState StateSuggestion => BehaviourState.FindingMate;
 
-        public override bool IsEligibleForActivation => targetMate != null && _creature.Reproduce > 30;
+        public override bool IsEligibleForActivation => targetMate != null && _creature.Reproduce > 40;
 
         private void Start()
         {
@@ -27,7 +27,7 @@ namespace Creatures.Behaviour
             if (targetMate == null)
             {
                 // TargetMate is destroyed
-                OnDeactivationRequest?.Invoke(this);
+                OnDeactivationRequest.Invoke(this);
             }
         }
 
@@ -35,7 +35,7 @@ namespace Creatures.Behaviour
         {
             if (IsEligibleForActivation)
             {
-                OnActivationRequest?.Invoke(this);
+                OnActivationRequest.Invoke(this);
             }
         }
 
@@ -96,13 +96,13 @@ namespace Creatures.Behaviour
             }
             else
             {
-                OnDeactivationRequest?.Invoke(this);
+                OnDeactivationRequest.Invoke(this);
             }
         }
 
         private void OnTargetReached()
         {
-            OnDeactivationRequest?.Invoke(this);
+            OnDeactivationRequest.Invoke(this);
         }
     }
 }
