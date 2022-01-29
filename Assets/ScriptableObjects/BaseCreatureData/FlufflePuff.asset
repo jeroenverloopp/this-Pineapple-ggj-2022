@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: FlufflePuff
   m_EditorClassIdentifier: 
   MoveSpeed: 5
+  CanBreed: 1
+  BreedingTime: 3
   EatsCreatures: []
-  IsAfraidOfCreatures: []
+  IsAfraidOfCreatures:
+  - {fileID: 11400000, guid: 26898710e319dfa4caf784fca6fd9a03, type: 2}
+  Prefab: {fileID: 3276730980003007728, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
