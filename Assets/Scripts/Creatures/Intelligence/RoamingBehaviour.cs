@@ -30,10 +30,9 @@ namespace Creatures.Behaviour
         public override void SetActive(bool active)
         {
             base.SetActive(active);
-            if (active)
+            if (Active)
             {
                 _durationTimer = Random.Range(_creatureData.MinRoamingTime, _creatureData.MaxRoamingTime);
-                Debug.Log(_durationTimer);
                 SetNewTarget();
                 _creature.Movement.OnTargetReached += SetNewTarget;
                 _creature.Movement.OnSetTargetFailed += SetNewTarget;

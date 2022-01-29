@@ -23,12 +23,18 @@ public class BaseCreature : MonoBehaviour
     [SerializeField] private MovementComponent _movement;
     private BehaviourManager _behaviourManager;
 
+    public BehaviourState State { get; private set; }
+    
+    public float Hunger { get; private set; }
+
     private void Awake()
     {
         if (_movement == null)
         {
             Debug.LogError("Creature has no movement Component");
         }
+
+        Hunger = creatureData.StartHunger;
     }
 
     // Start is called before the first frame update
@@ -39,7 +45,6 @@ public class BaseCreature : MonoBehaviour
         breedTimer = creatureData.BreedingCooldown;
         
         _behaviourManager = gameObject.AddComponent<BehaviourManager>();
-        Debug.Log($"_behaviourManager : {_behaviourManager}");
         _behaviourManager.Init(creatureData.Behaviours , creatureData, this);
     }
 
@@ -47,10 +52,25 @@ public class BaseCreature : MonoBehaviour
     void Update()
     {
         //BreedUpdate();
+
+        Hunger = Mathf.Min(Hunger + Time.deltaTime, creatureData.MaxHunger);
+        if(Hunger >= creatureData.MaxHunger)
+        {
+            Destroy(gameObject);
+        }
+        
+    }
+
+    public virtual void SetState(BehaviourState state)
+    {
+        //Debug.Log($"{State} -> {state}");
+        State = state;
+
     }
 
     public virtual void WhenInReach(Collider2D collider)
     {
+        return;
         if (!collider.isTrigger)
         {
             CheckForBreed(collider);
@@ -60,6 +80,7 @@ public class BaseCreature : MonoBehaviour
 
     public virtual void WhenInSight(Collider2D collider)
     {
+        return;
         if (!collider.isTrigger)
         {
             //Debug.Log($"{transform.name} has {collider.transform.name} in sight!");

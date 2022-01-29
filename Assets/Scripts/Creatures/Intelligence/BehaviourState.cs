@@ -8,6 +8,7 @@
         LookingForFood,
         Eating,
         FindingMate,
-        Breeding
+        Breeding,
+        Dieing
     }
 }
