@@ -5,17 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "GGJ - Creatures/Base Creature Data")]
 public class BaseCreatureData : ScriptableObject
 {
-    
+    [Header("Idle")]
+    public float MinIdleTime = 0;
+    public float MaxIdleTime = 5f;
+
     [Header("Visuals")]
     public GameObject Prefab;
     
     [Header("Stats")]
     public float Nutrition = 50; //Amount of food gained when this creature is eaten.
     public float MoveSpeed; //The speed when normally walking
-    
-    [Header("Idle")]
-    public float MinIdleTime = 0;
-    public float MaxIdleTime = 5f;
     
     [Header("Fleeing")]
     public List<BaseCreatureData> IsAfraidOfCreatures; //The creatures this creature will flee from.

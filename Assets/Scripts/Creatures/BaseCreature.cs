@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BaseCreature : MonoBehaviour
@@ -8,86 +10,65 @@ public class BaseCreature : MonoBehaviour
     public BaseCreatureData creatureData;
 
     [SerializeField]
-    protected BreedState breedState = BreedState.Cooldown;
-    protected float breedTimer;
-    protected enum BreedState { Breeding, Cooldown, Idle };
-    protected enum BehaviourState {Idle, Roaming, Fleeing, LookingForFood, Eating, FindingMate, Breeding}
+    protected List<BaseCreatureBehaviour> Behaviours;
+
+    [SerializeField]
+    protected BaseCreatureBehaviour ActiveBehaviour;
 
     // Start is called before the first frame update
     void Start()
     {
         MoveSpeed = creatureData.MoveSpeed;
-        breedState = BreedState.Cooldown;
-        breedTimer = creatureData.BreedingTime;
+        Behaviours = GetComponentsInChildren<BaseCreatureBehaviour>().ToList();
+        ActiveBehaviour = Behaviours.FirstOrDefault();
+        ActiveBehaviour.ActiveBehaviourStart();
     }
 
     // Update is called once per frame
     void Update()
     {
-        BreedUpdate();
+        ActiveBehaviour.ActiveBehaviourUpdate();
+        ManagePriority();
     }
 
     public virtual void WhenInReach(Collider2D collider)
     {
-        if (!collider.isTrigger)
+        foreach (var behaviour in Behaviours)
         {
-            CheckForBreed(collider);
-            CheckForEat(collider);
+            behaviour.InactiveWhenInReach(collider);
         }
+        ActiveBehaviour.ActiveWhenInReach( collider);
+    }
+
+    public virtual void WhileInSight(Collider2D collider)
+    {
+        foreach (var behaviour in Behaviours)
+        {
+            behaviour.InactiveWhileInSight(collider);
+        }
+        ActiveBehaviour.ActiveWhileInSight(collider);
     }
 
     public virtual void WhenInSight(Collider2D collider)
     {
-        if(!collider.isTrigger)
-            Debug.Log($"{transform.name} has {collider.transform.name} in sight!");
-    }
-
-    protected void StartBreed()
-    {
-        Debug.Log($"The breeding has started for {transform.name}");
-        breedState = BreedState.Breeding;
-        breedTimer = creatureData.BreedingTime;
-    }
-    protected void BreedUpdate()
-    {
-        if (breedState != BreedState.Idle)
+        foreach (var behaviour in Behaviours)
         {
-            breedTimer -= Time.deltaTime;
-
-            if (breedTimer <= 0)
-            {
-                if (breedState == BreedState.Breeding)
-                    Hatch();
-                else if (breedState == BreedState.Cooldown)
-                    breedState = BreedState.Idle;
-            }
+            behaviour.InactiveWhenInSight(collider);
         }
+
+        ActiveBehaviour.ActiveWhenInSight( collider);
     }
 
-    protected void Hatch()
+    protected virtual void ManagePriority()
     {
-        Debug.Log("HATCH");
-        // Instantiate new Fluff Creature somewhere close by
-        var junior = Instantiate(creatureData.Prefab, (new Vector2(transform.position.x, transform.position.y) + new Vector2(Random.Range(-1, 1), Random.Range(-1, 1))), Quaternion.identity);
-        breedState = BreedState.Cooldown;
-        breedTimer = creatureData.BreedingTime;
-    }
+        // Get behaviour with highest priority
+        var topPriobehaviour = Behaviours.OrderByDescending(x => x.Priority).FirstOrDefault();
 
-    private void CheckForBreed(Collider2D collider)
-    {
-        if (collider.gameObject.tag.Equals(gameObject.tag) && breedState == BreedState.Idle && creatureData.CanBreed)
+        if (topPriobehaviour != ActiveBehaviour)
         {
-            if (gameObject.GetInstanceID() > collider.gameObject.GetInstanceID())
-                StartBreed();
-        }
-    }
-
-    private void CheckForEat(Collider2D collider)
-    {
-        if (creatureData.EatsCreatures.Contains(collider.gameObject.GetComponent<BaseCreature>().creatureData))
-        {
-            Debug.Log($"Eat the other!: {collider.transform.name}");
-            Destroy(collider.gameObject);
+            Debug.Log($"Priority change for {transform.name}: {topPriobehaviour.behaviourname}");
+            ActiveBehaviour.ActiveBehaviourStop();
+            ActiveBehaviour = topPriobehaviour;
         }
     }
 }
