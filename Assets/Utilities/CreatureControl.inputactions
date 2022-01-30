@@ -17,6 +17,17 @@
             ],
             "bindings": [
                 {
+                    "name": "",
+                    "id": "a2a9d699-cebf-4621-a137-e1e7d30d1145",
+                    "path": "<WebGLGamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "2D Vector",
                     "id": "8b5ebafc-f1de-43cb-9559-5a689d70d935",
                     "path": "2DVector",
@@ -70,17 +81,6 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "a2a9d699-cebf-4621-a137-e1e7d30d1145",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Standard",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -116,17 +116,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "ToggleCreatures",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e342b06c-eef7-4d1e-86fe-b8cbd914bc34",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Standard",
-                    "action": "SpawnCreature",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -169,18 +158,18 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "cdd58530-25cc-4d2e-b42f-b31fcae38ee1",
-                    "path": "<Joystick>/stick",
+                    "id": "61cfc1b4-59a8-4416-a0f3-e5ca05f77ffd",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Standard",
+                    "groups": "",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "2D Vector",
-                    "id": "72ed7a77-ca84-44eb-863c-bef40ab2bdce",
+                    "id": "55796cfd-9e3e-45e8-bc3f-43bc6b25648a",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -191,66 +180,66 @@
                 },
                 {
                     "name": "up",
-                    "id": "b74a7b70-9077-41e6-8340-9e32671e06e6",
+                    "id": "3f754ab8-1b93-452f-bd43-cd20b42c324c",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Standard",
+                    "groups": "",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "b7f943d8-0c20-44d7-8e8a-e2cb2df77204",
+                    "id": "7ffc2b9b-829b-4f3d-8c79-c9c8d71fc439",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Standard",
+                    "groups": "",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "21d47f08-7cfc-47c2-a532-94e910bbe326",
+                    "id": "a1d8c419-21bf-4c76-ae62-ff4fc7a72389",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Standard",
+                    "groups": "",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "865b2560-a760-4bec-b0e2-8afb5757f9fc",
+                    "id": "b938c851-993d-4252-8413-255b633bd849",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Standard",
+                    "groups": "",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "1cf2085b-6a47-4bca-a3ae-53c38361d20c",
-                    "path": "<HID::PS3/USB Corded Gamepad>/button2",
+                    "id": "c4e12201-91cc-466a-ac95-ff9ef58c7721",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Standard",
+                    "groups": "",
                     "action": "Eat Fluff",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "dbe6122c-8c79-4adc-b34b-599484ed09fd",
-                    "path": "<Keyboard>/space",
+                    "id": "e967c5aa-783b-444a-9101-074b940a3b78",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Standard",
+                    "groups": "",
                     "action": "Eat Fluff",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -258,22 +247,5 @@
             ]
         }
     ],
-    "controlSchemes": [
-        {
-            "name": "Standard",
-            "bindingGroup": "Standard",
-            "devices": [
-                {
-                    "devicePath": "<Keyboard>",
-                    "isOptional": false,
-                    "isOR": false
-                },
-                {
-                    "devicePath": "<Gamepad>",
-                    "isOptional": true,
-                    "isOR": false
-                }
-            ]
-        }
-    ]
+    "controlSchemes": []
 }
