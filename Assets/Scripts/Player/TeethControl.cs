@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using Audio;
 using Core.Triggers;
 using Creatures;
+using Icons;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -101,7 +103,7 @@ public class TeethControl : MonoBehaviour
 
     public void StartEating(CallbackContext context)
     {
-        if (context.performed && teethState != TeethState.Eat)
+        if (context.performed && teethState != TeethState.Eat && fluffsInRange.Count > 0)
         {
             SetState(TeethState.Eat);
 
@@ -112,6 +114,8 @@ public class TeethControl : MonoBehaviour
                 fluffsInRange.RemoveAt(0);
                 Hunger += fluff.creatureData.Nutrition;
                 Destroy(fluff.gameObject);
+                AudioManager.Instance.Play("TeethEat");
+                IconManager.Instance.Create("Food", fluff.transform.position + Vector3.up * .2f);
             }
         }    
     }
