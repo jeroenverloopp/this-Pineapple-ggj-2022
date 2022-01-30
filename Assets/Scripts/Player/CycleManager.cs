@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CycleManager : MonoBehaviour
 {
-    public Text cycleText, timeText;
+    public Transform ClockTransform;
+
+    public Image healthCircle;
 
     public enum Phases { Day, Night }
 
@@ -19,10 +19,12 @@ public class CycleManager : MonoBehaviour
 
     public string currentClockTime;
 
+    [SerializeField]
+    private TeethControl _player;
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -36,9 +38,15 @@ public class CycleManager : MonoBehaviour
 
         currentClockTime = GetCurrentClockTime();
 
-        timeText.text = currentClockTime;
+        var restForRotation = (currentTime % (timePerPhase * 2));
+        var clockRotation = ((restForRotation / (timePerPhase * 2)) * 360) - 90;
 
-        cycleText.text = CurrentPhase.ToString();
+        ClockTransform.rotation = Quaternion.Euler(0, 0, clockRotation);
+
+        if (_player != null)
+        {
+            healthCircle.fillAmount = _player.Hunger / 100f;
+        }
     }
 
     private string GetCurrentClockTime()

@@ -11,7 +11,6 @@ using static UnityEngine.InputSystem.InputAction;
 public class TeethControl : MonoBehaviour
 {
     // Hunger + Eating
-    public Text hungerText;
     private float _hunger = 50;
     [SerializeField] private float maxHunger;
     private float _eatTimer;
@@ -92,8 +91,6 @@ public class TeethControl : MonoBehaviour
         }
 
         Hunger -= HungerIncrease * Time.deltaTime;
-
-        hungerText.text = $"Hunger: {Hunger}";
 
         if (Hunger <= 0)
         {
