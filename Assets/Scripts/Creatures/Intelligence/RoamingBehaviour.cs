@@ -17,7 +17,7 @@ namespace Creatures.Behaviour
         protected override void UpdateWhenActive()
         {
             _durationTimer = Mathf.Clamp(_durationTimer - Time.deltaTime, 0, _durationTimer);
-            if (_durationTimer <= 0)
+            if (_durationTimer <= 0 || _creature.Alive == false)
             {
                 OnDeactivationRequest?.Invoke(this);
             }

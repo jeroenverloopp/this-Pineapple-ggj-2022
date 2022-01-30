@@ -11,13 +11,40 @@ namespace Food
         [SerializeField] protected int _timeUntilEaten;
 
 
+        public BaseCreature Eater;
+        public bool InUse;
+        
         public virtual bool CanBeEaten()
         {
             return true;
         }
+
+        public void StartEating(BaseCreature eater)
+        {
+            if (Eater == null)
+            {
+                Eater = eater;
+                InUse = true;
+            }
+        }
+        
+        public void StopEating(BaseCreature stopper)
+        {
+            if (stopper == Eater)
+            {
+                InUse = false;
+                Eater = null;
+            }
+            else
+            {
+                Debug.Log($"stopper != Eater");
+            }
+        }
         
         public virtual int Eat()
         {
+            InUse = false;
+            Eater = null;
             return _nutrition;
         }
     }

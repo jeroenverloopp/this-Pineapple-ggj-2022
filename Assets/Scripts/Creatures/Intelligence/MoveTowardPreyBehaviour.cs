@@ -37,13 +37,14 @@ namespace Creatures.Behaviour
         {
             bool iCanEat = _creature.Hunger >= _creatureData.StartHuntingThreshold;
 
-            if (iCanEat == false || _targetPrey == null || _targetPrey.Alive == false)
+            if (iCanEat == false || _targetPrey == null || _targetPrey.Alive == false || _creature.Alive == false)
             {
+                _targetPrey = null;
                 OnDeactivationRequest.Invoke(this);
             }
-            else
+            else if(_targetPrey != null)
             {
-                if (_creature.Movement.Moving)
+                if (_creature.Movement.WaitingForPath == false)
                 {
                     var targetPreyGrid = LevelManager.Instance.Grid.WorldToGridPosition(_targetPrey.transform.position);
                     var walkTargetGrid = LevelManager.Instance.Grid.WorldToGridPosition(_creature.Movement.TargetPosition);
@@ -135,7 +136,17 @@ namespace Creatures.Behaviour
 
         private void OnTargetReached()
         {
-            OnDeactivationRequest.Invoke(this);
+            var targetPreyGrid = LevelManager.Instance.Grid.WorldToGridPosition(_targetPrey.transform.position);
+            var transformGrid = LevelManager.Instance.Grid.WorldToGridPosition(transform.position);
+
+            if (transformGrid == targetPreyGrid)
+            {
+                OnDeactivationRequest.Invoke(this);
+            }
+            else if(_creature.Movement.WaitingForPath == false)
+            {
+                MoveTowardsTarget();
+            }
         }
     }
 }

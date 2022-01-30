@@ -8,6 +8,7 @@
         FindingPrey,
         Eating,
         FindingMate,
+        FindingFood,
         Breeding,
         Dieing
     }

@@ -163,9 +163,34 @@ MonoBehaviour:
     Volume: 0.5
     Pitch: 0.5
     Loop: 1
-  - Name: TeethEat
-    Clip: {fileID: 8300000, guid: 4dec6a13d95a3c844b878e0202f30acb, type: 3}
+  - Name: FluffEat
+    Clip: {fileID: 8300000, guid: df523867121dc2144ab9bc8afa2f864f, type: 3}
     Volume: 0.5
+    Pitch: 0.5
+    Loop: 0
+  - Name: FluffDie
+    Clip: {fileID: 8300000, guid: 783b85fcf84d413428e48789ffada285, type: 3}
+    Volume: 0.5
+    Pitch: 0.5
+    Loop: 0
+  - Name: FluffBreed
+    Clip: {fileID: 8300000, guid: c9010b3c96575ba45a64cafe73a3b22f, type: 3}
+    Volume: 0.5
+    Pitch: 0.5
+    Loop: 0
+  - Name: TeethEat
+    Clip: {fileID: 8300000, guid: 6b7b7c05fd0aa824783701a0b2e5cc6e, type: 3}
+    Volume: 1
+    Pitch: 0.5
+    Loop: 0
+  - Name: TeethDie
+    Clip: {fileID: 8300000, guid: 205976d24716ca741807d9f85ef034a8, type: 3}
+    Volume: 1
+    Pitch: 0.5
+    Loop: 0
+  - Name: TeethBreed
+    Clip: {fileID: 8300000, guid: 324058055ab713f44a9ecf338dcef49f, type: 3}
+    Volume: 1
     Pitch: 0.5
     Loop: 0
 --- !u!4 &158954533
@@ -425,8 +450,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iconDataList:
   - Name: Food
-    Color: {r: 1, g: 1, b: 1, a: 1}
+    Color: {r: 0.8372014, g: 1, b: 0.0047169924, a: 1}
     Icon: {fileID: 21300000, guid: e099bdf87f7845440aba3f4711f4c555, type: 3}
+  - Name: Newborn
+    Color: {r: 0.9716981, g: 0.041251317, b: 0.041251317, a: 1}
+    Icon: {fileID: 21300000, guid: 5f874c248d7359e4d8a20a565e6350c3, type: 3}
+  - Name: Death
+    Color: {r: 1, g: 1, b: 1, a: 1}
+    Icon: {fileID: 21300000, guid: 3d01f7cb7a2bc7244806e09ac8a3e631, type: 3}
 --- !u!4 &900000073
 Transform:
   m_ObjectHideFlags: 0
@@ -873,7 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eacd1c6e090813e49a3cefdce7748f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _berryCount: 15
+  _berryCount: 10
   _foodPrefab: {fileID: 5613972638000954105, guid: 26f5a63f388cf984192c0cfbefcef5f9, type: 3}
 --- !u!4 &1318405924
 Transform:

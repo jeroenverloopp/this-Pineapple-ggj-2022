@@ -38,7 +38,7 @@ namespace Creatures.Behaviour
             bool iCanBreed = _creature.Reproduce >= _creatureData.CanReproduceThreshold;
             bool targetMateCanBreed = _targetMate != null && _targetMate.Reproduce >= _targetMate.creatureData.CanReproduceThreshold;
             
-            if (iCanBreed == false || targetMateCanBreed == false || _targetMate.State == BehaviourState.Breeding)
+            if (iCanBreed == false || targetMateCanBreed == false || _targetMate.State == BehaviourState.Breeding || _creature.Alive == false)
             {
                 OnDeactivationRequest.Invoke(this);
             }

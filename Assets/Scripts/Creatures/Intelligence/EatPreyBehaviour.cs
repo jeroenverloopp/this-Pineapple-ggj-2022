@@ -33,8 +33,9 @@ namespace Creatures.Behaviour
         
         protected override void UpdateWhenActive()
         {
-            if (_eatablePrey == null)
+            if (_eatablePrey == null || _creature.Alive == false || _creature.Nutrition <= 0)
             {
+                _eatablePrey = null;
                 OnDeactivationRequest?.Invoke(this);
                 return;
             }
@@ -42,8 +43,7 @@ namespace Creatures.Behaviour
             _eatingTimer = Mathf.Max(_eatingTimer - Time.deltaTime, 0);
             if (_eatingTimer <= 0)
             {
-                Debug.Log("Prey eaten");
-                AudioManager.Instance.Play("TeethEat");
+                _creature.PlayEatSound();
                 IconManager.Instance.Create("Food", _eatablePrey.transform.position + Vector3.up*.2f);
                 _creature.Eat(_eatablePrey);
                 _eatablePrey = null;

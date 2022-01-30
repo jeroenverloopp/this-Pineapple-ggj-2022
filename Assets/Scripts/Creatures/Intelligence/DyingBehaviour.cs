@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Icons;
+using UnityEngine;
 
 namespace Creatures.Behaviour
 {
@@ -20,7 +21,6 @@ namespace Creatures.Behaviour
 
             if (_durationTimer <= 0 || _creature.Nutrition <= 0)
             {
-                Debug.Log("Died!!!");
                 Destroy(gameObject);
             }
         }
@@ -39,7 +39,9 @@ namespace Creatures.Behaviour
             if (Active)
             {
                 _creature.Movement.Stop();
-                _durationTimer = 8f;
+                _durationTimer = 4f;
+                _creature.PlayDieSound();
+                IconManager.Instance.Create("Death", (Vector2)transform.position + Vector2.up*.2f);
             }
         }
     }

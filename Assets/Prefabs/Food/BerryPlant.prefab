@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -546847339
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 9995b5a03d801ba439bf96fe8b223ba8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5613972638000954104}
   - component: {fileID: 5613972638000954105}
+  - component: {fileID: 5085304040405583808}
   m_Layer: 0
   m_Name: BerryPlant
   m_TagString: Untagged
@@ -129,9 +130,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8955e06419824ecda2c1ef611e57c8e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nutrition: 25
+  _nutrition: 45
   _timeUntilEaten: 2
+  Eater: {fileID: 0}
+  InUse: 0
   _spriteRenderer: {fileID: 5613972636961336409}
   _hasBerry: {fileID: 21300000, guid: 9995b5a03d801ba439bf96fe8b223ba8, type: 3}
   _noBerry: {fileID: 21300000, guid: d1620a487c25a254ab55f35ea7da2186, type: 3}
   _resetDuration: 10
+--- !u!58 &5085304040405583808
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5613972638000954106}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.2

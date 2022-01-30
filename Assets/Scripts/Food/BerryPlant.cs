@@ -59,6 +59,10 @@ namespace Food
             {
                 _cooldownCounter = _resetDuration;
             }
+            else
+            {
+                InUse = false;
+            }
         }
     }
 }

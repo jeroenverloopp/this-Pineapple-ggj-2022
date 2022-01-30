@@ -55,14 +55,9 @@ public class BaseCreature : MonoBehaviour
         if(!Alive) return;
         
         Hunger = Mathf.Min(Hunger + Time.deltaTime*creatureData.HungerGained, creatureData.MaxHunger);
-
-
         float amount = Mathf.Min(1, Hunger / creatureData.MaxHunger);
         _body.color = new Color(1-amount, 1-amount, 1-amount);
-        
-        
 
-        
         Reproduce = Mathf.Min(Reproduce + Time.deltaTime * creatureData.ReproduceGained, creatureData.MaxReproduce);
         Age += Time.deltaTime * creatureData.ReproduceGained;
 
@@ -94,6 +89,10 @@ public class BaseCreature : MonoBehaviour
     {
         creature.Die();
     }
+
+    public virtual void PlayEatSound(){}
+    public virtual void PlayDieSound(){}
+    public virtual void PlayBreedSound(){}
     
     private void Die()
     {

@@ -27,6 +27,11 @@ namespace Audio
             }
         }
 
+        public void SetPitch(float pitch)
+        {
+            _source.pitch = pitch;
+        }
+
 
         void Update()
         {

@@ -18,12 +18,15 @@ namespace Creatures
         
         public bool Moving { get; private set; }
         public Vector2 TargetPosition { get; private set; }
+
+        public bool WaitingForPath { get; private set; }
         
         public void Stop()
         {
             StopCoroutine(nameof(FollowPath));
             _waypoints = null;
             Moving = false;
+            WaitingForPath = false;
         }
         
         public void SetSpeed(float speed)
@@ -40,6 +43,7 @@ namespace Creatures
         {
             Vector2 fromPosition = transform.position;
             TargetPosition = targetPosition;
+            WaitingForPath = true;
             PathRequestManager.RequestPath(LevelManager.Instance.Grid, fromPosition, targetPosition , SetPathToTarget);
         }
 
@@ -49,6 +53,8 @@ namespace Creatures
             {
                 return;
             }
+
+            WaitingForPath = false;
             if (success)
             {
                 Stop();

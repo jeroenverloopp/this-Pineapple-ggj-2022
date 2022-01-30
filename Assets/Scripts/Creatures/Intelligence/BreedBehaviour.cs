@@ -1,4 +1,5 @@
 ﻿using Core.Triggers;
+using Icons;
 using Level;
 using UnityEngine;
 
@@ -37,8 +38,13 @@ namespace Creatures.Behaviour
 
         protected override void UpdateWhenActive()
         {
+            if (_creature.Reproduce < _creatureData.StartReproduce)
+            {
+                OnDeactivationRequest?.Invoke(this);
+                return;
+            }
             _durationTimer = Mathf.Clamp(_durationTimer - Time.deltaTime, 0, _durationTimer);
-            if (_durationTimer <= 0)
+            if (_durationTimer <= 0 && _creature.Alive)
             {
                 if (breedState == BreedState.Breeding)
                 {
@@ -61,7 +67,6 @@ namespace Creatures.Behaviour
 
             if (breedState == BreedState.Idle && _breedingMate != null && CanReproduce())
             {
-                Debug.Log($"Breed try activate: {Priority}");
                 OnActivationRequest?.Invoke(this);
             }
         }
@@ -100,10 +105,14 @@ namespace Creatures.Behaviour
                     gridPos = LevelManager.Instance.Grid.WorldToGridPosition(parentPosition + rndPosition);
                     tries++;
                 }
-                Debug.Log($"Tries: {tries}");
+                
+                IconManager.Instance.Create("Newborn", parentPosition + Vector2.up*.2f);
                 
                 var junior = Instantiate(_creatureData.Prefab, parentPosition+rndPosition, Quaternion.identity);
-                junior.name = $"Junior {gameObject.name}";
+                junior.name = $"{gameObject.name}";
+                _creature.PlayBreedSound();
+                _creature.Hunger += 20;
+                _breedingMate.Hunger += 20;
                 _creature.Reproduce = 0;
                 _breedingMate.Reproduce = 0;
             }
@@ -151,7 +160,6 @@ namespace Creatures.Behaviour
 
                 if (leavingCreature.GetType() == _breedingMate.GetType())
                 {
-                    Debug.Log("My Breeding Target left");
                     _breedingMate = null;
                 }
             }

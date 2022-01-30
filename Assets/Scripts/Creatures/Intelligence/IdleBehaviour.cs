@@ -9,7 +9,7 @@ namespace Creatures.Behaviour
         
         public override BehaviourState StateSuggestion => BehaviourState.Idle;
         
-        public override bool IsEligibleForActivation => true;
+        public override bool IsEligibleForActivation => _creature.Hunger < _creatureData.MaxHunger/2;
 
 
         private float _durationTimer = 0;
@@ -17,7 +17,7 @@ namespace Creatures.Behaviour
         protected override void UpdateWhenActive()
         {
             _durationTimer = Mathf.Clamp(_durationTimer - Time.deltaTime, 0, _durationTimer);
-            if (_durationTimer <= 0)
+            if (_durationTimer <= 0 || _creature.Alive == false)
             {
                 OnDeactivationRequest?.Invoke(this);
             }

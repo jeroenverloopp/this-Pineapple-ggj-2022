@@ -27,8 +27,10 @@ MonoBehaviour:
   - State: 5
     SpriteAnimation: {fileID: 11400000, guid: d16c46b55c4173a4f9454363277f4e45, type: 2}
   - State: 6
-    SpriteAnimation: {fileID: 11400000, guid: b778ca188c1566c47968ad8fefb6f125, type: 2}
+    SpriteAnimation: {fileID: 11400000, guid: 53a665f66c6bc1f448a939368e874a5f, type: 2}
   - State: 7
+    SpriteAnimation: {fileID: 11400000, guid: b778ca188c1566c47968ad8fefb6f125, type: 2}
+  - State: 8
     SpriteAnimation: {fileID: 11400000, guid: d16c46b55c4173a4f9454363277f4e45, type: 2}
   Behaviours:
   - {fileID: 3930782315483698955, guid: c89c1b3519ea1e041af0be5e38552e84, type: 3}
@@ -36,8 +38,10 @@ MonoBehaviour:
   - {fileID: -86540010038852658, guid: 63f4dd9791b372f40b219f039294eed5, type: 3}
   - {fileID: 543860475459765647, guid: 18976c3841f52ac45a031e243af22c8d, type: 3}
   - {fileID: 4846018789605895728, guid: 0847300f21aae7446b25835973d61ebb, type: 3}
+  - {fileID: -1450786266164323917, guid: dcff8ffa3f500324a9abe2ddbbd9f3aa, type: 3}
+  - {fileID: -9085532717398389798, guid: 3d353ea1043452240806eaea17d3dcd8, type: 3}
   Nutrition: 50
-  TimeToGetEaten: 5
+  TimeToGetEaten: 2
   MoveSpeed: 1
   MinIdleTime: 1
   MaxIdleTime: 5
@@ -55,10 +59,15 @@ MonoBehaviour:
   MaxHunger: 100
   StartHuntingThreshold: 50
   HuntingPriorityIncrease: 0.5
-  FindPreyRange: 15
-  EatRange: 4
+  FindPreyRange: 1.5
+  EatPreyRange: 0.3
   EatsCreatures: []
-  EatsGround: 
+  StartForagingThreshold: 50
+  ForagingPriorityIncrease: 0.5
+  FindFoodRange: 1.5
+  EatFoodRange: 0.3
+  EatsFood:
+  - {fileID: 5613972638000954105, guid: 26f5a63f388cf984192c0cfbefcef5f9, type: 3}
   BreedingTime: 3
   BreedingCooldown: 0
   ReproduceGained: 3
