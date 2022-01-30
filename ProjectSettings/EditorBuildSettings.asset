@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CreatureTryout.unity
     guid: c7f2e90452ca709459802a464ac19413
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: ef54f60aee8bf944a9f8e3d8a22da527
   m_configObjects: {}
