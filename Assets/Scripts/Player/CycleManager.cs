@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Core.Singletons;
 
 namespace CycleManager
 {
-    public class CycleManager : MonoBehaviour
+    public class CycleManager : MonoBehaviourSingleton<CycleManager>
     {
         public Action<Phases> OnCycleShift;
 
