@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &8307654
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -202,8 +202,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8307653}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.43, y: 5.52, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: 3.69, y: -0.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 68300692}
@@ -242,18 +242,6 @@ MonoBehaviour:
     m_ActionName: Creature/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 271447f4-0618-414e-ab0d-9f41f9ef581d
-    m_ActionName: PathFindingTest/Create S Unit[/Keyboard/s]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 13e64095-cb55-4b96-b3e9-c636a613e8e0
-    m_ActionName: PathFindingTest/Create A Unit[/Keyboard/a]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 986dd0a7-1abe-45ea-9028-7cd45a92f84e
-    m_ActionName: PathFindingTest/MouseClick[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 4949f91b-473a-43fe-b4b7-ea685f5e1d7f
     m_ActionName: TeethMcTeethFace/Movement[/PS3/USB Corded Gamepad/stick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
@@ -272,6 +260,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f2de7f89-949a-4905-a758-3d1183cbf224
     m_ActionName: TeethMcTeethFace/Eat Fluff[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a702bf49-38f9-4cf5-9795-f59008d5e3c2
+    m_ActionName: PathFindingTest/ToggleCreatures[/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 56444ea2-f3d7-429e-9507-27cdf58c0986
+    m_ActionName: PathFindingTest/SpawnCreature[/Mouse/leftButton,/Keyboard/s]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Standard
   m_DefaultActionMap: TeethMcTeethFace
@@ -290,9 +286,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hungerText: {fileID: 378565893}
+  maxHunger: 0
+  timeToEat: 3
   playerInput: {fileID: 8307656}
-  moveSpeed: 15
-  Hunger: 50
+  moveSpeed: 5
+  _animation: {fileID: 0}
+  teethState: 0
+  runAnimation: {fileID: 0}
+  idleAnimation: {fileID: 0}
+  eatAnimation: {fileID: 0}
   HungerIncrease: 1
 --- !u!1 &68300691
 GameObject:
@@ -432,7 +434,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.7, y: 2.2}
+  m_AnchoredPosition: {x: -22.699997, y: 2.2000008}
   m_SizeDelta: {x: 148.749, y: 18.749}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &217197224
@@ -512,7 +514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.7, y: 27.6}
+  m_AnchoredPosition: {x: -22.699997, y: 27.6}
   m_SizeDelta: {x: 148.749, y: 18.749}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &378565893
@@ -661,7 +663,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 26
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -807,11 +809,11 @@ RectTransform:
   m_Father: {fileID: 1196595622}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -464.463, y: 214.466}
-  m_SizeDelta: {x: -928.935, y: -428.928}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_SizeDelta: {x: 210.065, y: 86.07199}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1163682300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1257,7 +1259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.7, y: -23.9}
+  m_AnchoredPosition: {x: -22.699997, y: -23.900002}
   m_SizeDelta: {x: 148.749, y: 18.749}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2130779758
@@ -1302,3 +1304,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130779756}
   m_CullTransparentMesh: 1
+--- !u!1001 &386141606791220859
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3055160291455299165, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055160291455299165, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055160291455299165, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055160291455299165, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055160291455299165, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055160291455299165, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055160291455299165, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055160291455299165, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055160291455299165, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055160291455299165, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055160291455299165, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8542826632272173564, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: m_Name
+      value: Player Teeth
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719893577871923596, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartEating
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719893577871923597, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: timeToEat
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719893577871923597, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: hungerText
+      value: 
+      objectReference: {fileID: 378565893}
+    - target: {fileID: 8719893577871923597, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 8307656}
+    - target: {fileID: 8719893577871923597, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: eatAnimation
+      value: 
+      objectReference: {fileID: 11400000, guid: 01050b268d32cd44aaea49ab60e7cfb8, type: 2}
+    - target: {fileID: 8719893577871923597, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: runAnimation
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f39b536cc4e1cc40a9699221a276684, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}

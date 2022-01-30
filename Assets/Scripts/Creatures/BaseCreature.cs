@@ -59,10 +59,7 @@ public class BaseCreature : MonoBehaviour
 
         float amount = Mathf.Min(1, Hunger / creatureData.MaxHunger);
         _body.color = new Color(1-amount, 1-amount, 1-amount);
-        
-        
 
-        
         Reproduce = Mathf.Min(Reproduce + Time.deltaTime * creatureData.ReproduceGained, creatureData.MaxReproduce);
         Age += Time.deltaTime * creatureData.ReproduceGained;
 
