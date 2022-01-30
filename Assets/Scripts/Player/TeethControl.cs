@@ -5,6 +5,7 @@ using Creatures;
 using Icons;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -94,7 +95,7 @@ public class TeethControl : MonoBehaviour
 
         if (Hunger <= 0)
         {
-            Debug.Log($"Game Over!");
+            SceneManager.LoadScene("Game Over");
         }
     }
 

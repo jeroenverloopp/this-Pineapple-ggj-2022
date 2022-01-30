@@ -1014,6 +1014,10 @@ PrefabInstance:
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 8307656}
+    - target: {fileID: 8719893577871923597, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
+      propertyPath: HungerIncrease
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a751c5ac1945ff749bfe69f0ccf78c4d, type: 3}
 --- !u!1001 &5807766919933524392
