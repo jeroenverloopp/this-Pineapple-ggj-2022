@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Creatures.Behaviour;
+using Food;
 using Level;
 using ScriptableObjects.BaseCreatureData;
 using UnityEngine;
@@ -55,16 +56,26 @@ public class BaseCreatureData : ScriptableObject
     public float MinRoamingTime = 5;
     public float MaxRoamingTime = 15;
     
-    [Header("Hunting")]
+    
+    [Header("Hunger")]
     public float StartHunger = 0; // Spawns with this amount of hunger
     public float HungerGained = 1; // Amount of hunger gained per second
     public float MaxHunger = 100; //Dies when reaches this
+    
+    [Header("Hunting")]
     public float StartHuntingThreshold = 50; //Amount of hunger before hunting starts Calling for activation
     public float HuntingPriorityIncrease = 0.5f; //Amount of priority that gets added with each added hunger above huntHunger.
     public float FindPreyRange = 15; //The range of vision to find food.
-    public float EatRange = 4;
+    public float EatPreyRange = 0.3f;
     public List<BaseCreatureData> EatsCreatures; //Creatures it can eat
-    public List<GroundType> EatsGround; //Gets nutrition from ground (grass and stuff)
+    
+    
+    [Header("Foraging")]
+    public float StartForagingThreshold = 50; //Amount of hunger before hunting starts Calling for activation
+    public float ForagingPriorityIncrease = 0.5f; //Amount of priority that gets added with each added hunger above huntHunger.
+    public float FindFoodRange = 1.5f; //The range of vision to find food.
+    public float EatFoodRange = 0.3f;
+    public List<BaseFood> EatsFood; //Gets nutrition from ground (grass and stuff)
     
     
     [Header("FindingMate & Breeding")]

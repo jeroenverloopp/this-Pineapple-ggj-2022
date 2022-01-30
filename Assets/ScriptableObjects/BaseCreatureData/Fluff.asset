@@ -40,7 +40,7 @@ MonoBehaviour:
   TimeToGetEaten: 5
   MoveSpeed: 1
   MinIdleTime: 1
-  MaxIdleTime: 2
+  MaxIdleTime: 5
   IsAfraidOfCreatures:
   - {fileID: 11400000, guid: 26898710e319dfa4caf784fca6fd9a03, type: 2}
   FleeSpeed: 2
@@ -55,7 +55,7 @@ MonoBehaviour:
   MaxHunger: 100
   StartHuntingThreshold: 50
   HuntingPriorityIncrease: 0.5
-  FindFoodRange: 0
+  FindPreyRange: 15
   EatRange: 4
   EatsCreatures: []
   EatsGround: 

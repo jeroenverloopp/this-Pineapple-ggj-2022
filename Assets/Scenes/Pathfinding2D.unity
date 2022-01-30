@@ -717,7 +717,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1251023073}
   - component: {fileID: 1251023072}
-  - component: {fileID: 1251023071}
+  - component: {fileID: 1251023074}
   m_Layer: 0
   m_Name: CreatureSpawner
   m_TagString: Untagged
@@ -725,7 +725,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1251023071
+--- !u!114 &1251023072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251023070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce246fd17ee945dfa01e459f219749ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnableCreatures:
+  - {fileID: 7148685577671873521, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+  - {fileID: 4367407673905216485, guid: e911f05e61616f4498fe7debe41ba5cb, type: 3}
+--- !u!4 &1251023073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251023070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1000, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1251023074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -768,13 +798,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 271447f4-0618-414e-ab0d-9f41f9ef581d
-    m_ActionName: PathFindingTest/Create S Unit[/Keyboard/s]
+    m_ActionId: a702bf49-38f9-4cf5-9795-f59008d5e3c2
+    m_ActionName: PathFindingTest/ToggleCreatures[/Keyboard/a]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1251023072}
         m_TargetAssemblyTypeName: Creatures.CreatureSpawner, Assembly-CSharp
-        m_MethodName: PreviousCreature
+        m_MethodName: OnSpawnCreature
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -784,58 +814,81 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 13e64095-cb55-4b96-b3e9-c636a613e8e0
-    m_ActionName: PathFindingTest/Create A Unit[/Keyboard/a]
+    m_ActionId: 56444ea2-f3d7-429e-9507-27cdf58c0986
+    m_ActionName: PathFindingTest/SpawnCreature[/Mouse/leftButton,/Keyboard/s]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1251023072}
-        m_TargetAssemblyTypeName: Creatures.CreatureSpawner, Assembly-CSharp
-        m_MethodName: SpawnCreature
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 986dd0a7-1abe-45ea-9028-7cd45a92f84e
-    m_ActionName: PathFindingTest/MouseInput[/Mouse/leftButton]
+      m_Calls: []
+    m_ActionId: 4949f91b-473a-43fe-b4b7-ea685f5e1d7f
+    m_ActionName: TeethMcTeethFace/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f2de7f89-949a-4905-a758-3d1183cbf224
+    m_ActionName: TeethMcTeethFace/Eat Fluff[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Standard
   m_DefaultActionMap: PathFindingTest
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1251023072
+--- !u!1 &1318405921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1318405924}
+  - component: {fileID: 1318405923}
+  - component: {fileID: 1318405922}
+  m_Layer: 0
+  m_Name: FoodSpawners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1318405922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1251023070}
+  m_GameObject: {fileID: 1318405921}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce246fd17ee945dfa01e459f219749ec, type: 3}
+  m_Script: {fileID: 11500000, guid: eacd1c6e090813e49a3cefdce7748f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnableCreatures:
-  - {fileID: 7148685577671873521, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
-  - {fileID: 4367407673905216485, guid: e911f05e61616f4498fe7debe41ba5cb, type: 3}
---- !u!4 &1251023073
+  _berryCount: 15
+  _foodPrefab: {fileID: 1870388432411552397, guid: 02cf7517ecc08494199b5b21c79e6e03, type: 3}
+--- !u!114 &1318405923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318405921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eacd1c6e090813e49a3cefdce7748f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _berryCount: 15
+  _foodPrefab: {fileID: 5613972638000954105, guid: 26f5a63f388cf984192c0cfbefcef5f9, type: 3}
+--- !u!4 &1318405924
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1251023070}
+  m_GameObject: {fileID: 1318405921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1000, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1736623387 stripped
 Transform:

@@ -20,7 +20,7 @@ namespace Creatures.Behaviour
         
         private void Start()
         {
-            _eatPreyTrigger = CircleTrigger.Create(_creatureData.EatRange, "findPreyTrigger", transform);
+            _eatPreyTrigger = CircleTrigger.Create(_creatureData.EatPreyRange, "findPreyTrigger", transform);
             _eatPreyTrigger.OnTriggerEnter += CheckForEatablePreyFound;
             _eatPreyTrigger.OnTriggerExit += CheckForEatablePreyLost;
         }

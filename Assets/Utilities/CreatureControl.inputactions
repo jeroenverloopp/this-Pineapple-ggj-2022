@@ -89,27 +89,18 @@
             "id": "73e507f2-ad74-407c-9c31-187b4bb6a27e",
             "actions": [
                 {
-                    "name": "Create S Unit",
+                    "name": "ToggleCreatures",
                     "type": "Button",
-                    "id": "271447f4-0618-414e-ab0d-9f41f9ef581d",
+                    "id": "a702bf49-38f9-4cf5-9795-f59008d5e3c2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Create A Unit",
+                    "name": "SpawnCreature",
                     "type": "Button",
-                    "id": "13e64095-cb55-4b96-b3e9-c636a613e8e0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "MouseClick",
-                    "type": "Button",
-                    "id": "986dd0a7-1abe-45ea-9028-7cd45a92f84e",
+                    "id": "56444ea2-f3d7-429e-9507-27cdf58c0986",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -119,34 +110,34 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "a360e557-b623-447b-9c4e-72dcd5bb43b5",
+                    "id": "44410516-74b2-4e3e-8ba4-28aee7282fad",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleCreatures",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e342b06c-eef7-4d1e-86fe-b8cbd914bc34",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Standard",
+                    "action": "SpawnCreature",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3ac659df-81fc-40df-bb0b-a91474a6872d",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Create S Unit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "98c5fd01-1c09-4dbd-b45c-987a82750f02",
-                    "path": "<Keyboard>/a",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Create A Unit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7f0eb2b1-93dd-4d9c-a0d1-34f20ea1809b",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MouseClick",
+                    "action": "SpawnCreature",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

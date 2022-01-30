@@ -9,12 +9,12 @@ namespace Creatures
     {
         [SerializeField] private List<BaseCreature> _spawnableCreatures;
         private int _selectedCreature;
-        
 
-        public void SpawnCreature(InputAction.CallbackContext context)
+        public void OnSpawnCreature(InputAction.CallbackContext context)
         {
             if (context.performed)
             {
+                
                 Vector2 position = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
                 Vector2Int gridPos = LevelManager.Instance.Grid.WorldToGridPosition(position);
                 if (LevelManager.Instance.Grid.InBounds(gridPos) && LevelManager.Instance.Grid[gridPos.x,gridPos.y].Walkable)

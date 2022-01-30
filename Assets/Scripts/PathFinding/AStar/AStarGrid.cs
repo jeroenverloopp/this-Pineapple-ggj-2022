@@ -6,6 +6,7 @@ namespace PathFinding.AStar
 
     public abstract class AStarGrid
     {
+        public Vector2 Position => _position;
         public Vector2 NodeSize => _nodeSize;
         public Vector2Int NodeCount => _nodeCount;
         public Vector2 GridSize => _gridSize;
