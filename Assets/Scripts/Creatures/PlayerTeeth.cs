@@ -6,6 +6,7 @@ using Creatures.Behaviour;
 using Icons;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Creatures
 {
@@ -26,6 +27,7 @@ namespace Creatures
 
             MoveSpeed = creatureData.MoveSpeed;
             Hunger = creatureData.StartHunger;
+            Alive = true;
             _fluffsInRange = new List<FluffCreature>();
             SetState(BehaviourState.Idle);
         }
@@ -42,33 +44,6 @@ namespace Creatures
         }
 
         protected override void Update()
-        {
-            base.Update();
-        }
-        
-        public void StartEating(InputAction.CallbackContext context)
-        {
-            if (context.performed && State != BehaviourState.Eating && _fluffsInRange.Count > 0)
-            {
-                SetState(BehaviourState.Eating);
-
-                while (_fluffsInRange.Count > 0)
-                {
-                    var fluff = _fluffsInRange[0];
-                    _eatTimer = Mathf.Max(_eatTimer , fluff.creatureData.TimeToGetEaten);
-                    
-                    Hunger = Mathf.Max(Hunger - fluff.creatureData.Nutrition , 0);
-                    
-                    AudioManager.Instance.Play("TeethEat");
-                    IconManager.Instance.Create("Food", fluff.transform.position + Vector3.up * .2f);
-                    
-                    _fluffsInRange.RemoveAt(0);
-                    Destroy(fluff.gameObject);
-                }
-            }    
-        }
-        
-        void FixedUpdate()
         {
             if (State != BehaviourState.Eating)
             {
@@ -95,14 +70,35 @@ namespace Creatures
             }
 
             Hunger += creatureData.HungerGained * Time.deltaTime;
-            //hungerText.text = $"Hunger: {Hunger}";
-
-            if (Hunger >= creatureData.MaxHunger)
+            
+            if (Hunger >= creatureData.MaxHunger || Alive == false)
             {
-                //Debug.Log($"Game Over!");
+                SceneManager.LoadScene("Game Over");
             }
         }
         
+        public void StartEating(InputAction.CallbackContext context)
+        {
+            if (context.performed && State != BehaviourState.Eating && _fluffsInRange.Count > 0)
+            {
+                SetState(BehaviourState.Eating);
+
+                while (_fluffsInRange.Count > 0)
+                {
+                    var fluff = _fluffsInRange[0];
+                    _eatTimer = Mathf.Max(_eatTimer , fluff.creatureData.TimeToGetEaten);
+                    
+                    Hunger = Mathf.Max(Hunger - fluff.creatureData.Nutrition , 0);
+                    
+                    AudioManager.Instance.Play("TeethEat");
+                    IconManager.Instance.Create("Food", fluff.transform.position + Vector3.up * .2f);
+                    
+                    _fluffsInRange.RemoveAt(0);
+                    Destroy(fluff.gameObject);
+                }
+            }    
+        }
+
         private void FinishEating()
         {
             SetState(BehaviourState.Idle);

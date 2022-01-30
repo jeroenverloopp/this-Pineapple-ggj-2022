@@ -36,6 +36,10 @@ MonoBehaviour:
   - {fileID: 4846018789605895728, guid: 0847300f21aae7446b25835973d61ebb, type: 3}
   - {fileID: 9110433843914056637, guid: e816b7583ea65fb47a06856988337c60, type: 3}
   - {fileID: 9173504384610961632, guid: 67ac2fa7957c58e4fae60b7def89d32d, type: 3}
+  - {fileID: 3930782315483698955, guid: c89c1b3519ea1e041af0be5e38552e84, type: 3}
+  - {fileID: 5716145341915161023, guid: a503636c5d3ebce47b79cb57239b7495, type: 3}
+  - {fileID: -86540010038852658, guid: 63f4dd9791b372f40b219f039294eed5, type: 3}
+  - {fileID: 543860475459765647, guid: 18976c3841f52ac45a031e243af22c8d, type: 3}
   Nutrition: 50
   TimeToGetEaten: 2
   MoveSpeed: 1.5
@@ -54,7 +58,7 @@ MonoBehaviour:
   MaxHunger: 100
   StartHuntingThreshold: 50
   HuntingPriorityIncrease: 0.5
-  FindPreyRange: 10
+  FindPreyRange: 1.5
   EatPreyRange: 0.3
   EatsCreatures:
   - {fileID: 11400000, guid: 3867dfcc0ecbc73429220551d283dafd, type: 2}

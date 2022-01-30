@@ -62,8 +62,6 @@ namespace Creatures.Behaviour
 
         protected override void UpdateWhenInactive()
         {
-            Debug.Log($"Trying to Activate Move toward prey: {_targetPrey != null && _creature.Hunger >= _creatureData.StartHuntingThreshold}");
-            
             if (_targetPrey != null && _creature.Hunger >= _creatureData.StartHuntingThreshold)
             {
                 OnActivationRequest.Invoke(this);
@@ -90,6 +88,7 @@ namespace Creatures.Behaviour
 
         private void CheckForPreyEnterSight(Collider2D coll)
         {
+            
             if (coll.isTrigger == false && _targetPrey == null)
             {
                 var possiblePrey = coll.gameObject.GetComponent<BaseCreature>();
@@ -97,7 +96,6 @@ namespace Creatures.Behaviour
                 {
                     return;
                 }
-
                 if (possiblePrey.Alive && _creatureData.EatsCreatures.Contains(possiblePrey.creatureData))
                 {
                     _targetPrey = possiblePrey;

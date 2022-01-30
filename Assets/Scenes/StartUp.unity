@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 578a8bb42acb08c49b5f951f610eafb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: CreatureTryout
+  gameSceneName: Main
   PineApple: {fileID: 856242395}
   Menu: {fileID: 856449341}
   logoTimer: 3

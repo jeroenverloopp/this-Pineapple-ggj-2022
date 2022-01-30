@@ -13,6 +13,7 @@ namespace CycleManager
         public Transform ClockTransform;
 
         public Image healthCircle;
+        public Image ProgressImage;
 
         public Phases CurrentPhase;
 
@@ -48,7 +49,7 @@ namespace CycleManager
 
             if (_player != null)
             {
-                healthCircle.fillAmount = 1 - (_player.Hunger / 100f);
+                ProgressImage.fillAmount = 1 - (_player.Hunger / 100f);
             }
         }
 

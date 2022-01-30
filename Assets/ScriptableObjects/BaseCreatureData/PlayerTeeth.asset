@@ -46,8 +46,8 @@ MonoBehaviour:
   RoamRange: 15
   MinRoamingTime: 5
   MaxRoamingTime: 25
-  StartHunger: 50
-  HungerGained: 3
+  StartHunger: 0
+  HungerGained: 2
   MaxHunger: 100
   StartHuntingThreshold: 40
   HuntingPriorityIncrease: 0.25

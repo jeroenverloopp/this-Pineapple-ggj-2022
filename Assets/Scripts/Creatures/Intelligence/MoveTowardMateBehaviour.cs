@@ -42,7 +42,7 @@ namespace Creatures.Behaviour
             
             if (iCanBreed == false || targetMateCanBreed == false || _targetMate.State == BehaviourState.Breeding || _creature.Alive == false)
             {
-                OnDeactivationRequest.Invoke(this);
+                OnDeactivationRequest?.Invoke(this);
             }
             else
             {
@@ -63,7 +63,7 @@ namespace Creatures.Behaviour
         {
             if (_targetMate != null && _creature.Reproduce >= _creatureData.CanReproduceThreshold)
             {
-                OnActivationRequest.Invoke(this);
+                OnActivationRequest?.Invoke(this);
             }
         }
 
@@ -132,13 +132,13 @@ namespace Creatures.Behaviour
             }
             else
             {
-                OnDeactivationRequest.Invoke(this);
+                OnDeactivationRequest?.Invoke(this);
             }
         }
 
         private void OnTargetReached()
         {
-            OnDeactivationRequest.Invoke(this);
+            OnDeactivationRequest?.Invoke(this);
         }
     }
 }

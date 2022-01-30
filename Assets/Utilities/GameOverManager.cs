@@ -11,6 +11,6 @@ public class GameOverManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("StartUp");
+        SceneManager.LoadScene("Main");
     }
 }

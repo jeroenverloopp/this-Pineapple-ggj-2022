@@ -45,7 +45,6 @@ namespace Creatures.Behaviour
             base.SetActive(active);
             if (Active)
             {
-                Debug.Log("Activate");
                 _durationTimer = Random.Range(_creatureData.MinRoamingTime, _creatureData.MaxRoamingTime);
                 _creature.Movement.OnTargetReached += SetNewTarget;
                 _creature.Movement.OnSetTargetFailed += SetNewTarget;

@@ -488,14 +488,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1924756799}
-    - target: {fileID: 5807766921121390605, guid: 0d1034214e21a3e4db7b5c115a94a14d, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807766921121390605, guid: 0d1034214e21a3e4db7b5c115a94a14d, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1122393371
-      objectReference: {fileID: 0}
     - target: {fileID: 5807766921121390606, guid: 0d1034214e21a3e4db7b5c115a94a14d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -584,14 +576,6 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1256516006}
-    - target: {fileID: 5807766921121390607, guid: 0d1034214e21a3e4db7b5c115a94a14d, type: 3}
-      propertyPath: CurrentPhase
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807766921121390607, guid: 0d1034214e21a3e4db7b5c115a94a14d, type: 3}
-      propertyPath: timePerPhase
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d1034214e21a3e4db7b5c115a94a14d, type: 3}
 --- !u!4 &959348635 stripped
@@ -935,7 +919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _creaturePrefab: {fileID: 7148685577671873521, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
-  _spawnCount: 10
+  _spawnCount: 20
 --- !u!4 &1251023073
 Transform:
   m_ObjectHideFlags: 0
@@ -1219,18 +1203,6 @@ PrefabInstance:
     - target: {fileID: 795329867575557156, guid: ee9b498b47d02cf4ca9c5da2b71ba179, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4698118653477759199, guid: ee9b498b47d02cf4ca9c5da2b71ba179, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1256516006}
-    - target: {fileID: 4698118653477759199, guid: ee9b498b47d02cf4ca9c5da2b71ba179, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartEating
-      objectReference: {fileID: 0}
-    - target: {fileID: 4698118653477759199, guid: ee9b498b47d02cf4ca9c5da2b71ba179, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Creatures.PlayerTeeth, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4781585720434752061, guid: ee9b498b47d02cf4ca9c5da2b71ba179, type: 3}
       propertyPath: m_Name

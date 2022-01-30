@@ -62,7 +62,7 @@ MonoBehaviour:
   FindPreyRange: 1.5
   EatPreyRange: 0.3
   EatsCreatures: []
-  StartForagingThreshold: 50
+  StartForagingThreshold: 20
   ForagingPriorityIncrease: 0.5
   FindFoodRange: 1.5
   EatFoodRange: 0.3

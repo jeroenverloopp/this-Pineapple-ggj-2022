@@ -94,7 +94,7 @@ public class BaseCreature : MonoBehaviour
         creature.Nutrition = 0;
     }
 
-    public void Kill(BaseCreature creature)
+    public virtual void Kill(BaseCreature creature)
     {
         creature.Die();
     }
