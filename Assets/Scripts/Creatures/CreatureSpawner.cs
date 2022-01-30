@@ -1,15 +1,50 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Level;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace Creatures
 {
     public class CreatureSpawner : MonoBehaviour
     {
-        [SerializeField] private List<BaseCreature> _spawnableCreatures;
+        private List<BaseCreature> _spawnableCreatures;
         private int _selectedCreature;
 
+        [SerializeField] private BaseCreature _creaturePrefab;
+        [SerializeField] private int _spawnCount = 10;
+
+        private void Start()
+        {
+
+            for (int i = 0; i < _spawnCount; i++)
+            {
+                SpawnCreatureOnRandomPosition(_creaturePrefab);
+            }
+        }
+
+
+        private void SpawnCreatureOnRandomPosition(BaseCreature spawnedCreature)
+        {
+            var grid = LevelManager.Instance.Grid;
+            float xRandom = Random.Range(grid.Position.x, grid.Position.x + grid.GridSize.x);
+            float yRandom = Random.Range(grid.Position.y, grid.Position.y + grid.GridSize.y);
+            Vector2Int gridPos = LevelManager.Instance.Grid.WorldToGridPosition(xRandom,yRandom);
+            
+            while (LevelManager.Instance.Grid.InBounds(gridPos) == false ||
+                   LevelManager.Instance.Grid[gridPos.x, gridPos.y].Walkable == false)
+            {
+                xRandom = Random.Range(grid.Position.x, grid.Position.x + grid.GridSize.x);
+                yRandom = Random.Range(grid.Position.y, grid.Position.y + grid.GridSize.y);
+                gridPos = LevelManager.Instance.Grid.WorldToGridPosition(xRandom,yRandom);
+            }
+            
+            BaseCreature creature = Instantiate(spawnedCreature);
+            creature.transform.position = new Vector2(xRandom,yRandom);
+            
+        }
+        
         public void OnSpawnCreature(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -24,6 +59,7 @@ namespace Creatures
                 }
             }
         }
+
 
         public void PreviousCreature(InputAction.CallbackContext context)
         {

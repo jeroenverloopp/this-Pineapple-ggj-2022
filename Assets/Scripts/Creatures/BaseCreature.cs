@@ -26,7 +26,7 @@ public class BaseCreature : MonoBehaviour
 
     public float Reproduce;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if (_movement == null)
         {
@@ -41,7 +41,7 @@ public class BaseCreature : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         MoveSpeed = creatureData.MoveSpeed;
         
@@ -50,7 +50,7 @@ public class BaseCreature : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if(!Alive) return;
         
@@ -74,9 +74,11 @@ public class BaseCreature : MonoBehaviour
 
     public virtual void SetState(BehaviourState state)
     {
-        State = state;
-        
-        _animation.SetAnimation(creatureData.SpriteAnimations[State]);
+        if (State != state)
+        {
+            State = state;
+            _animation.SetAnimation(creatureData.SpriteAnimations[State]);
+        }
     }
 
     public void Eat(BaseCreature creature)
