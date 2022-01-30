@@ -32,6 +32,7 @@ namespace Creatures.Behaviour
         {
             _findFoodTrigger.OnTriggerEnter -= CheckForFoodEnterSight;
             _findFoodTrigger.OnTriggerExit -= CheckForFoodLeaveSight;
+            Destroy(_findFoodTrigger.gameObject);
         }
 
         protected override void UpdateWhenActive()
@@ -40,7 +41,7 @@ namespace Creatures.Behaviour
 
             if (iCanEat == false || _targetFood == null || _targetFood.CanBeEaten() == false || _creature.Alive == false)
             {
-                OnDeactivationRequest.Invoke(this);
+                OnDeactivationRequest?.Invoke(this);
             }
             else
             {
@@ -142,13 +143,13 @@ namespace Creatures.Behaviour
             }
             else
             {
-                OnDeactivationRequest.Invoke(this);
+                OnDeactivationRequest?.Invoke(this);
             }
         }
 
         private void OnTargetReached()
         {
-            OnDeactivationRequest.Invoke(this);
+            OnDeactivationRequest?.Invoke(this);
         }
     }
 }

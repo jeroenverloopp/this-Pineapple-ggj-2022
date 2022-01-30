@@ -41,6 +41,7 @@ namespace Creatures
 
         public void SetTarget(Vector2 targetPosition)
         {
+            //Debug.Log(targetPosition);
             Vector2 fromPosition = transform.position;
             TargetPosition = targetPosition;
             WaitingForPath = true;

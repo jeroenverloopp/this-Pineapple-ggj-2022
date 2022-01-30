@@ -31,12 +31,14 @@ namespace Creatures.Behaviour
         {
             _findMateRangeTrigger.OnTriggerEnter -= CheckForMateEnterSight;
             _findMateRangeTrigger.OnTriggerExit -= CheckForMateLeaveSight;
+            Destroy(_findMateRangeTrigger.gameObject);
         }
 
         protected override void UpdateWhenActive()
         {
             bool iCanBreed = _creature.Reproduce >= _creatureData.CanReproduceThreshold;
             bool targetMateCanBreed = _targetMate != null && _targetMate.Reproduce >= _targetMate.creatureData.CanReproduceThreshold;
+            
             
             if (iCanBreed == false || targetMateCanBreed == false || _targetMate.State == BehaviourState.Breeding || _creature.Alive == false)
             {

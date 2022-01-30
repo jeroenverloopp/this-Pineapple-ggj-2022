@@ -180,7 +180,6 @@ GameObject:
   - component: {fileID: 4367407673905216485}
   - component: {fileID: -6791479235226565352}
   - component: {fileID: 3718809277202633368}
-  - component: {fileID: 5703350732835644778}
   - component: {fileID: 5039801168650021735}
   m_Layer: 0
   m_Name: Teeth
@@ -256,27 +255,6 @@ MonoBehaviour:
   _spriteRenderList:
   - {fileID: 7591793775512098969}
   - {fileID: 2518411284181673335}
---- !u!50 &5703350732835644778
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5703350732835644779}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!58 &5039801168650021735
 CircleCollider2D:
   m_ObjectHideFlags: 0

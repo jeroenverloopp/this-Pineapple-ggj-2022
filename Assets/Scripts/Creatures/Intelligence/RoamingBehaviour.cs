@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Creatures.Behaviour
 {
@@ -13,7 +15,13 @@ namespace Creatures.Behaviour
         
         [SerializeField]
         private float _durationTimer = 0;
-        
+
+        private void OnDestroy()
+        {
+            _creature.Movement.OnTargetReached -= SetNewTarget;
+            _creature.Movement.OnSetTargetFailed -= SetNewTarget;
+        }
+
         protected override void UpdateWhenActive()
         {
             _durationTimer = Mathf.Clamp(_durationTimer - Time.deltaTime, 0, _durationTimer);
@@ -37,6 +45,7 @@ namespace Creatures.Behaviour
             base.SetActive(active);
             if (Active)
             {
+                Debug.Log("Activate");
                 _durationTimer = Random.Range(_creatureData.MinRoamingTime, _creatureData.MaxRoamingTime);
                 _creature.Movement.OnTargetReached += SetNewTarget;
                 _creature.Movement.OnSetTargetFailed += SetNewTarget;
@@ -48,6 +57,11 @@ namespace Creatures.Behaviour
                 _creature.Movement.OnSetTargetFailed -= SetNewTarget;
                 
             }
+        }
+
+        private void DoNothing()
+        {
+            
         }
 
         private void SetNewTarget()

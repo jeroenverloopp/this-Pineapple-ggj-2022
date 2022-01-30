@@ -29,6 +29,7 @@ namespace Creatures.Behaviour
         {
             _eatPreyTrigger.OnTriggerEnter -= CheckForEatablePreyFound;
             _eatPreyTrigger.OnTriggerExit -= CheckForEatablePreyLost;
+            Destroy(_eatPreyTrigger.gameObject);
         }
         
         protected override void UpdateWhenActive()

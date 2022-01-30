@@ -1,7 +1,9 @@
-﻿using Core.Triggers;
+﻿using System;
+using Core.Triggers;
 using Icons;
 using Level;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Creatures.Behaviour
 {
@@ -34,6 +36,13 @@ namespace Creatures.Behaviour
 
             GoInCoolDown();
             _creature.Reproduce = _creatureData.StartReproduce;
+        }
+
+        private void OnDestroy()
+        {
+            _startBreedTrigger.OnTriggerEnter -= CheckForBreedingMateFound;
+            _startBreedTrigger.OnTriggerExit -= CheckForBreedingMateLost;
+            Destroy(_startBreedTrigger.gameObject);
         }
 
         protected override void UpdateWhenActive()

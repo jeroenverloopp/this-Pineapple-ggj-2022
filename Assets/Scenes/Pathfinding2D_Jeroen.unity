@@ -585,8 +585,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1256516006}
     - target: {fileID: 5807766921121390607, guid: 0d1034214e21a3e4db7b5c115a94a14d, type: 3}
+      propertyPath: CurrentPhase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807766921121390607, guid: 0d1034214e21a3e4db7b5c115a94a14d, type: 3}
       propertyPath: timePerPhase
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d1034214e21a3e4db7b5c115a94a14d, type: 3}

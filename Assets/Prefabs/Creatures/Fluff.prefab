@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 7148685577671873521}
   - component: {fileID: 5978678076489527874}
   - component: {fileID: 5244445554092914929}
-  - component: {fileID: 2407840481240709831}
   - component: {fileID: 4714986162100816002}
   m_Layer: 0
   m_Name: Fluff
@@ -172,27 +171,6 @@ MonoBehaviour:
   _spriteRenderList:
   - {fileID: 3519537067511511608}
   - {fileID: 6676900854851438446}
---- !u!50 &2407840481240709831
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3276730980003007728}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!58 &4714986162100816002
 CircleCollider2D:
   m_ObjectHideFlags: 0

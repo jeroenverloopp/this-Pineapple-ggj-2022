@@ -28,7 +28,8 @@ public class BaseCreature : MonoBehaviour
 
     public void ChangeCreatureData(BaseCreatureData data)
     {
-        _behaviourManager.Init(creatureData.Behaviours , data, this);
+        creatureData = data;
+        _behaviourManager.Init(data.Behaviours , data, this);
     }
     
     

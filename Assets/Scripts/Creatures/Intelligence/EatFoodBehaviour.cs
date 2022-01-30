@@ -30,6 +30,7 @@ namespace Creatures.Behaviour
         {
             _eatFoodTrigger.OnTriggerEnter -= CheckForEatableFoodFound;
             _eatFoodTrigger.OnTriggerExit -= CheckForEatableFoodLost;
+            Destroy(_eatFoodTrigger.gameObject);
         }
         
         protected override void UpdateWhenActive()

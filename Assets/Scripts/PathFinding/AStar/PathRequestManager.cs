@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Core.Singletons;
 using UnityEngine;
@@ -18,12 +19,28 @@ namespace PathFinding.AStar
         {
             if (aStarGrid.InBounds(aStarGrid.WorldToGridPosition(pathEnd)) == false)
             {
-                callback.Invoke(null, false);
+                callback?.Invoke(null,false);
+                //CoroutineHelper.Instance.StartCoroutine(InvalidRequestDelayed(callback));
                 return;
             }
             PathRequest pathRequest = new PathRequest(aStarGrid,pathStart, pathEnd, callback);
             _pathRequestQueue.Enqueue(pathRequest);
             TryProcessNext();
+        }
+
+        public static IEnumerator InvalidRequestDelayed(Action<List<Vector2>, bool> callback)
+        {
+            yield return new WaitForSeconds(.1f);
+            callback?.Invoke(null,false);
+        }
+
+
+        public static void ClearRequests()
+        {
+            if (_pathRequestQueue != null)
+            {
+                _pathRequestQueue.Clear();
+            }
         }
 
 

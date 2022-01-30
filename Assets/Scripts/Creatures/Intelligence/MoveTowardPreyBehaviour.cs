@@ -31,6 +31,9 @@ namespace Creatures.Behaviour
         {
             _findPreyTrigger.OnTriggerEnter -= CheckForPreyEnterSight;
             _findPreyTrigger.OnTriggerExit -= CheckForPreyLeaveSight;
+            _creature.Movement.OnTargetReached -= OnTargetReached;
+            _creature.Movement.OnSetTargetFailed -= MoveTowardsTarget;
+            Destroy(_findPreyTrigger.gameObject);
         }
 
         protected override void UpdateWhenActive()
@@ -59,6 +62,8 @@ namespace Creatures.Behaviour
 
         protected override void UpdateWhenInactive()
         {
+            Debug.Log($"Trying to Activate Move toward prey: {_targetPrey != null && _creature.Hunger >= _creatureData.StartHuntingThreshold}");
+            
             if (_targetPrey != null && _creature.Hunger >= _creatureData.StartHuntingThreshold)
             {
                 OnActivationRequest.Invoke(this);
@@ -70,17 +75,12 @@ namespace Creatures.Behaviour
             base.SetActive(active);
             if (active)
             {
-                _findPreyTrigger.OnTriggerEnter -= CheckForPreyEnterSight;
-                _findPreyTrigger.OnTriggerExit -= CheckForPreyLeaveSight;
                 _creature.Movement.OnTargetReached += OnTargetReached;
                 _creature.Movement.OnSetTargetFailed += MoveTowardsTarget;
-
                 MoveTowardsTarget();
             }
             else
             {
-                _findPreyTrigger.OnTriggerEnter += CheckForPreyEnterSight;
-                _findPreyTrigger.OnTriggerExit += CheckForPreyLeaveSight;
                 _creature.Movement.OnTargetReached -= OnTargetReached;
                 _creature.Movement.OnSetTargetFailed -= MoveTowardsTarget;
                 _targetPrey = null;

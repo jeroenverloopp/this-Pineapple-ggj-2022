@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using PathFinding.AStar;
+using UnityEngine;
 
 namespace CycleManager
 {
@@ -10,6 +11,7 @@ namespace CycleManager
         
         private void Start()
         {
+            PathRequestManager.ClearRequests();
             CycleManager.Instance.OnCycleShift += OnPhaseChanged;
         }
 
