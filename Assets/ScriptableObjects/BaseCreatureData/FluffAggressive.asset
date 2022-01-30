@@ -15,23 +15,23 @@ MonoBehaviour:
   Prefab: {fileID: 7148685577671873521, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
   _sprites:
   - State: 0
-    SpriteAnimation: {fileID: 11400000, guid: d16c46b55c4173a4f9454363277f4e45, type: 2}
+    SpriteAnimation: {fileID: 11400000, guid: 7c882f5f5138b8544a01eda058f3266f, type: 2}
   - State: 1
-    SpriteAnimation: {fileID: 11400000, guid: d16c46b55c4173a4f9454363277f4e45, type: 2}
+    SpriteAnimation: {fileID: 11400000, guid: 7c882f5f5138b8544a01eda058f3266f, type: 2}
   - State: 2
-    SpriteAnimation: {fileID: 11400000, guid: 53a665f66c6bc1f448a939368e874a5f, type: 2}
+    SpriteAnimation: {fileID: 11400000, guid: 7de354b00ec0f9f409f9cd8fff8d7a24, type: 2}
   - State: 3
-    SpriteAnimation: {fileID: 11400000, guid: 53a665f66c6bc1f448a939368e874a5f, type: 2}
+    SpriteAnimation: {fileID: 11400000, guid: 7de354b00ec0f9f409f9cd8fff8d7a24, type: 2}
   - State: 4
-    SpriteAnimation: {fileID: 11400000, guid: 5dfdf949687132743b450de06771af03, type: 2}
+    SpriteAnimation: {fileID: 11400000, guid: 4e514793e069fc14f84ca27366e40013, type: 2}
   - State: 5
     SpriteAnimation: {fileID: 11400000, guid: d16c46b55c4173a4f9454363277f4e45, type: 2}
   - State: 6
-    SpriteAnimation: {fileID: 11400000, guid: 53a665f66c6bc1f448a939368e874a5f, type: 2}
+    SpriteAnimation: {fileID: 11400000, guid: 7de354b00ec0f9f409f9cd8fff8d7a24, type: 2}
   - State: 7
     SpriteAnimation: {fileID: 11400000, guid: b778ca188c1566c47968ad8fefb6f125, type: 2}
   - State: 8
-    SpriteAnimation: {fileID: 11400000, guid: d16c46b55c4173a4f9454363277f4e45, type: 2}
+    SpriteAnimation: {fileID: 11400000, guid: 7c882f5f5138b8544a01eda058f3266f, type: 2}
   Behaviours:
   - {fileID: 3930782315483698955, guid: c89c1b3519ea1e041af0be5e38552e84, type: 3}
   - {fileID: 5716145341915161023, guid: a503636c5d3ebce47b79cb57239b7495, type: 3}
