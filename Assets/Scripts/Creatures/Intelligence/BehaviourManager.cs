@@ -27,6 +27,16 @@ namespace Creatures.Behaviour
                 return;
             }
 
+            if (_behaviourList != null)
+            {
+                foreach (var b in _behaviourList)
+                {
+                    b.OnActivationRequest -= CheckForActivationOverride;
+                    b.OnDeactivationRequest -= CheckForDeactivation;
+                    Destroy(b);
+                }
+            }
+
             _behaviourList = new List<BaseBehaviour>();
             foreach (var behaviour in behaviourList)
             {

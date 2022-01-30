@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using Core.Singletons;
+using Creatures;
 
 namespace CycleManager
 {
@@ -24,7 +25,7 @@ namespace CycleManager
         public string currentClockTime;
 
         [SerializeField]
-        private TeethControl _player;
+        private PlayerTeeth _player;
 
         // Update is called once per frame
         void Update()
@@ -36,7 +37,7 @@ namespace CycleManager
             CurrentPhase = passedPhases % 2 == 0 ? Phases.Day : Phases.Night;
 
             if (passedPhases > previousPassed)
-                OnCycleShift.Invoke(CurrentPhase);
+                OnCycleShift?.Invoke(CurrentPhase);
 
             currentClockTime = GetCurrentClockTime();
 
@@ -47,7 +48,7 @@ namespace CycleManager
 
             if (_player != null)
             {
-                healthCircle.fillAmount = _player.Hunger / 100f;
+                healthCircle.fillAmount = 1 - (_player.Hunger / 100f);
             }
         }
 

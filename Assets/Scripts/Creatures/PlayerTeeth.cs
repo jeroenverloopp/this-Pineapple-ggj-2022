@@ -99,7 +99,7 @@ namespace Creatures
 
             if (Hunger >= creatureData.MaxHunger)
             {
-                Debug.Log($"Game Over!");
+                //Debug.Log($"Game Over!");
             }
         }
         

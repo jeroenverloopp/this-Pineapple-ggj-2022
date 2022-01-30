@@ -45,8 +45,7 @@ MonoBehaviour:
   MoveSpeed: 1.5
   MinIdleTime: 1
   MaxIdleTime: 5
-  IsAfraidOfCreatures:
-  - {fileID: 11400000, guid: 26898710e319dfa4caf784fca6fd9a03, type: 2}
+  IsAfraidOfCreatures: []
   FleeSpeed: 2
   MaxFleeDuration: 10
   FleeCoolDown: 0
@@ -59,15 +58,15 @@ MonoBehaviour:
   MaxHunger: 100
   StartHuntingThreshold: 50
   HuntingPriorityIncrease: 0.5
-  FindPreyRange: 1.5
+  FindPreyRange: 10
   EatPreyRange: 0.3
-  EatsCreatures: []
+  EatsCreatures:
+  - {fileID: 11400000, guid: 3867dfcc0ecbc73429220551d283dafd, type: 2}
   StartForagingThreshold: 50
   ForagingPriorityIncrease: 0.5
   FindFoodRange: 1.5
   EatFoodRange: 0.3
-  EatsFood:
-  - {fileID: 5613972638000954105, guid: 26f5a63f388cf984192c0cfbefcef5f9, type: 3}
+  EatsFood: []
   BreedingTime: 3
   BreedingCooldown: 0
   ReproduceGained: 3

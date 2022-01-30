@@ -26,6 +26,12 @@ public class BaseCreature : MonoBehaviour
 
     public float Reproduce;
 
+    public void ChangeCreatureData(BaseCreatureData data)
+    {
+        _behaviourManager.Init(creatureData.Behaviours , data, this);
+    }
+    
+    
     protected virtual void Awake()
     {
         if (_movement == null)
