@@ -5,7 +5,7 @@
         Idle,
         Roaming,
         Fleeing,
-        LookingForFood,
+        FindingPrey,
         Eating,
         FindingMate,
         Breeding,

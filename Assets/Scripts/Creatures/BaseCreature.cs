@@ -8,23 +8,23 @@ public class BaseCreature : MonoBehaviour
 {
     [HideInInspector]
     public float MoveSpeed;
-
+    
     public BaseCreatureData creatureData;
-
-    [SerializeField]
-    protected BreedState breedState = BreedState.Cooldown;
-    protected float breedTimer;
-    protected enum BreedState { Breeding, Cooldown, Idle };
 
 
     public MovementComponent Movement => _movement;
-    public BehaviourState State { get; private set; }
-    public float Hunger { get; private set; }
-    public bool Alive { get; private set; } = true;
+    public BehaviourState State;// { get; private set; }
+    public float Hunger;// { get; private set; }
+    public bool Alive;// { get; private set; };
+    public float Age;// { get; private set; }
+    public float Nutrition;
     
     [SerializeField] private MovementComponent _movement;
-    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private SpriteAnimationComponent _animation;
+    [SerializeField] private SpriteRenderer _body;
     private BehaviourManager _behaviourManager;
+
+    public float Reproduce;
 
     private void Awake()
     {
@@ -34,14 +34,16 @@ public class BaseCreature : MonoBehaviour
         }
 
         Hunger = creatureData.StartHunger;
+        Reproduce = creatureData.StartReproduce;
+        Age = Reproduce;
+        Alive = true;
+        Nutrition = creatureData.Nutrition;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         MoveSpeed = creatureData.MoveSpeed;
-        breedState = BreedState.Cooldown;
-        breedTimer = creatureData.BreedingCooldown;
         
         _behaviourManager = gameObject.AddComponent<BehaviourManager>();
         _behaviourManager.Init(creatureData.Behaviours , creatureData, this);
@@ -50,111 +52,51 @@ public class BaseCreature : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //BreedUpdate();
-
-        Hunger = Mathf.Min(Hunger + Time.deltaTime, creatureData.MaxHunger);
-
-        Color s = _spriteRenderer.color;
-        _spriteRenderer.color = new Color(s.r, s.g, s.b, 1 - Hunger / creatureData.MaxHunger);
+        if(!Alive) return;
         
-        if(Hunger >= creatureData.MaxHunger)
+        Hunger = Mathf.Min(Hunger + Time.deltaTime*creatureData.HungerGained, creatureData.MaxHunger);
+
+
+        float amount = Mathf.Min(1, Hunger / creatureData.MaxHunger);
+        _body.color = new Color(1-amount, 1-amount, 1-amount);
+        
+        
+
+        
+        Reproduce = Mathf.Min(Reproduce + Time.deltaTime * creatureData.ReproduceGained, creatureData.MaxReproduce);
+        Age += Time.deltaTime * creatureData.ReproduceGained;
+
+        float minScale = .6f;
+        float addedScale = (1 - minScale) * Mathf.Min(Age / creatureData.CanReproduceThreshold, 1);
+
+        transform.localScale = Vector3.one * (minScale + addedScale);
+        
+        if(Hunger >= creatureData.MaxHunger && Alive)
         {
             Die();
         }
-        
     }
 
     public virtual void SetState(BehaviourState state)
     {
-        //Debug.Log($"{State} -> {state}");
         State = state;
-
+        
+        _animation.SetAnimation(creatureData.SpriteAnimations[State]);
     }
 
     public void Eat(BaseCreature creature)
     {
         Hunger = Mathf.Max(Hunger - creature.creatureData.Nutrition, 0);
-        Debug.Log(Hunger);
+        creature.Nutrition = 0;
+    }
+
+    public void Kill(BaseCreature creature)
+    {
         creature.Die();
     }
-
-    public void Die()
+    
+    private void Die()
     {
         Alive = false;
-        Destroy(gameObject);
-    }
-
-    public virtual void WhenInReach(Collider2D collider)
-    {
-        return;
-        if (!collider.isTrigger)
-        {
-            CheckForBreed(collider);
-            CheckForEat(collider);
-        }
-    }
-
-    public virtual void WhenInSight(Collider2D collider)
-    {
-        return;
-        if (!collider.isTrigger)
-        {
-            //Debug.Log($"{transform.name} has {collider.transform.name} in sight!");
-        }
-    }
-
-    protected void StartBreed()
-    {
-        //Debug.Log($"The breeding has started for {transform.name}");
-        breedState = BreedState.Breeding;
-        breedTimer = creatureData.BreedingTime;
-    }
-    protected void BreedUpdate()
-    {
-        if (breedState != BreedState.Idle)
-        {
-            breedTimer -= Time.deltaTime;
-
-            if (breedTimer <= 0)
-            {
-                if (breedState == BreedState.Breeding)
-                    Hatch();
-                else if (breedState == BreedState.Cooldown)
-                    breedState = BreedState.Idle;
-            }
-        }
-    }
-
-    protected void Hatch()
-    {
-        //Debug.Log("HATCH");
-        // Instantiate new Fluff Creature somewhere close by
-        var junior = Instantiate(creatureData.Prefab, (new Vector2(transform.position.x, transform.position.y) + new Vector2(Random.Range(-1, 1), Random.Range(-1, 1))), Quaternion.identity);
-        breedState = BreedState.Cooldown;
-        breedTimer = creatureData.BreedingCooldown;
-    }
-
-    private void CheckForBreed(Collider2D collider)
-    {
-        if (collider.gameObject.tag.Equals(gameObject.tag) && breedState == BreedState.Idle && creatureData.CanBreed)
-        {
-            if (gameObject.GetInstanceID() > collider.gameObject.GetInstanceID())
-                StartBreed();
-        }
-    }
-
-    private void CheckForEat(Collider2D collider)
-    {
-        var creature = collider.gameObject.GetComponent<BaseCreature>();
-        if (creature == null)
-        {
-            return;
-        }
-        
-        if (creatureData.EatsCreatures.Contains(creature.creatureData))
-        {
-            Debug.Log($"Eat the other!: {collider.transform.name}");
-            Destroy(collider.gameObject);
-        }
     }
 }

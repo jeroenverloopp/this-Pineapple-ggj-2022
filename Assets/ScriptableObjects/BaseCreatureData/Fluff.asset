@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cea6c8a6bca67f49987c8428354895c, type: 3}
+  m_Name: Fluff
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 7148685577671873521, guid: 701fb8c5de6d2bb4893cab1406d3fa75, type: 3}
+  _sprites:
+  - State: 0
+    SpriteAnimation: {fileID: 11400000, guid: d16c46b55c4173a4f9454363277f4e45, type: 2}
+  - State: 1
+    SpriteAnimation: {fileID: 11400000, guid: d16c46b55c4173a4f9454363277f4e45, type: 2}
+  - State: 2
+    SpriteAnimation: {fileID: 11400000, guid: 53a665f66c6bc1f448a939368e874a5f, type: 2}
+  - State: 3
+    SpriteAnimation: {fileID: 11400000, guid: 53a665f66c6bc1f448a939368e874a5f, type: 2}
+  - State: 4
+    SpriteAnimation: {fileID: 11400000, guid: 5dfdf949687132743b450de06771af03, type: 2}
+  - State: 5
+    SpriteAnimation: {fileID: 11400000, guid: d16c46b55c4173a4f9454363277f4e45, type: 2}
+  - State: 6
+    SpriteAnimation: {fileID: 11400000, guid: b778ca188c1566c47968ad8fefb6f125, type: 2}
+  - State: 7
+    SpriteAnimation: {fileID: 11400000, guid: d16c46b55c4173a4f9454363277f4e45, type: 2}
+  Behaviours:
+  - {fileID: 3930782315483698955, guid: c89c1b3519ea1e041af0be5e38552e84, type: 3}
+  - {fileID: 5716145341915161023, guid: a503636c5d3ebce47b79cb57239b7495, type: 3}
+  - {fileID: -86540010038852658, guid: 63f4dd9791b372f40b219f039294eed5, type: 3}
+  - {fileID: 543860475459765647, guid: 18976c3841f52ac45a031e243af22c8d, type: 3}
+  - {fileID: 4846018789605895728, guid: 0847300f21aae7446b25835973d61ebb, type: 3}
+  Nutrition: 50
+  TimeToGetEaten: 5
+  MoveSpeed: 1
+  MinIdleTime: 1
+  MaxIdleTime: 2
+  IsAfraidOfCreatures:
+  - {fileID: 11400000, guid: 26898710e319dfa4caf784fca6fd9a03, type: 2}
+  FleeSpeed: 2
+  MaxFleeDuration: 10
+  FleeCoolDown: 0
+  KeepFleeingAfterLosingPredator: 0
+  RoamRange: 3
+  MinRoamingTime: 2
+  MaxRoamingTime: 10
+  StartHunger: 0
+  HungerGained: 2
+  MaxHunger: 100
+  StartHuntingThreshold: 50
+  HuntingPriorityIncrease: 0.5
+  FindFoodRange: 0
+  EatRange: 4
+  EatsCreatures: []
+  EatsGround: 
+  BreedingTime: 3
+  BreedingCooldown: 0
+  ReproduceGained: 3
+  CanReproduceThreshold: 25
+  StartReproduce: 0
+  MaxReproduce: 100
+  FindMateRange: 1
+  StartBreedRange: 0.2

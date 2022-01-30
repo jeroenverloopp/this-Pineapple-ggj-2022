@@ -5,8 +5,10 @@ using Random = UnityEngine.Random;
 
 namespace Creatures.Behaviour
 {
+    /*
     public class HuntingBehaviour : BaseBehaviour
     {
+        [SerializeField]
         public override int Priority
         {
             get
@@ -34,14 +36,14 @@ namespace Creatures.Behaviour
             
             _visionTrigger = CircleTrigger.Create(creatureData.FindFoodRange, "FindFoodRange", transform);
             _eatingTrigger = CircleTrigger.Create(creatureData.EatRange, "EatRange", transform);
-            _visionTrigger.OnTrigger += OnFoundFood;
-            _eatingTrigger.OnTrigger += OnEatFood;
+            _visionTrigger.OnTriggerEnter += OnFoundFood;
+            _eatingTrigger.OnTriggerEnter += OnEatFood;
         }
 
         private void OnDestroy()
         {
-            _visionTrigger.OnTrigger -= OnFoundFood;
-            _eatingTrigger.OnTrigger -= OnEatFood;
+            _visionTrigger.OnTriggerEnter -= OnFoundFood;
+            _eatingTrigger.OnTriggerEnter -= OnEatFood;
         }
 
         protected override void UpdateWhenActive()
@@ -181,4 +183,5 @@ namespace Creatures.Behaviour
             _creature.Movement.SetTarget(currentPosition + offset);
         }
     }
+    */
 }

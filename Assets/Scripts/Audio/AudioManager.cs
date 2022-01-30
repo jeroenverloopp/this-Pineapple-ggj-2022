@@ -13,12 +13,10 @@ namespace Audio
 
         private Dictionary<string, AudioData> _audioDict;
 
-        void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _audioDict = CreateDictionary();
-
-            Play("BackgroundMusic1");
-            Play("BackgroundMusic2");
         }
 
         public AudioComponent Play(string name, bool play = true)

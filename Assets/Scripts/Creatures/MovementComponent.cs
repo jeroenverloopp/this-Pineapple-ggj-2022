@@ -88,6 +88,12 @@ namespace Creatures
                     //Debug.Log($"position: {position} - target: {currentWaypoint} - speed: {_speed * Time.deltaTime}");
 
                     Vector2 nextPos = Vector2.MoveTowards(position, currentWaypoint, _speed * Time.deltaTime);
+                    
+                    var dir = nextPos - new Vector2(transform.position.x,transform.position.y);
+                    var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    angle += 90;
+                    transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
                     transform.position = nextPos;
                     yield return null;
                 }
@@ -96,7 +102,7 @@ namespace Creatures
             Moving = false;
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             if (_waypoints != null)
             {

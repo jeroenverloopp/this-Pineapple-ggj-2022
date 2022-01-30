@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Creatures.Behaviour;
 using Level;
+using ScriptableObjects.BaseCreatureData;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "GGJ - Creatures/Base Creature Data")]
@@ -8,7 +9,27 @@ public class BaseCreatureData : ScriptableObject
 {
     
     [Header("Visuals")]
-    public GameObject Prefab;
+    public BaseCreature Prefab;
+
+    public Dictionary<BehaviourState, SpriteAnimation> SpriteAnimations
+    {
+        get
+        {
+            if (_spriteAnimations == null)
+            {
+                _spriteAnimations = new Dictionary<BehaviourState, SpriteAnimation>();
+                foreach (var pair in _sprites)
+                {
+                    _spriteAnimations[pair.State] = pair.SpriteAnimation;
+                }
+            }
+
+            return _spriteAnimations;
+        }
+    }
+    private Dictionary<BehaviourState, SpriteAnimation> _spriteAnimations;
+
+    [SerializeField] private List<BehaviourStateSpritePair> _sprites;
 
     [Header("Behaviour")] 
     public List<BaseBehaviour> Behaviours;
@@ -38,16 +59,22 @@ public class BaseCreatureData : ScriptableObject
     public float StartHunger = 0; // Spawns with this amount of hunger
     public float HungerGained = 1; // Amount of hunger gained per second
     public float MaxHunger = 100; //Dies when reaches this
-    public float HuntHunger = 50; //Amount of hunger before hunting starts Calling for activation
+    public float StartHuntingThreshold = 50; //Amount of hunger before hunting starts Calling for activation
     public float HuntingPriorityIncrease = 0.5f; //Amount of priority that gets added with each added hunger above huntHunger.
-    public float FindFoodRange = 15; //The range of vision to find food.
+    public float FindPreyRange = 15; //The range of vision to find food.
     public float EatRange = 4;
     public List<BaseCreatureData> EatsCreatures; //Creatures it can eat
     public List<GroundType> EatsGround; //Gets nutrition from ground (grass and stuff)
     
     
     [Header("FindingMate & Breeding")]
-    public bool CanBreed; //Can this creature breed;
     public float BreedingTime; //How long it takes to make the magic happen.
     public float BreedingCooldown; //How long before it can search for a mate again.
+    public float ReproduceGained = 0.1f; // Amount of Reproduce gained per second.
+    public float CanReproduceThreshold = 40;
+    public float StartReproduce = 0;
+    public float MaxReproduce = 100;
+    public float FindMateRange = 10;
+    public float StartBreedRange = 1;
+
 }

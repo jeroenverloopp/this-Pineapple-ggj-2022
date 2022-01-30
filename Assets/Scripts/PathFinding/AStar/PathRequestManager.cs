@@ -19,6 +19,7 @@ namespace PathFinding.AStar
             if (aStarGrid.InBounds(aStarGrid.WorldToGridPosition(pathEnd)) == false)
             {
                 callback.Invoke(null, false);
+                return;
             }
             PathRequest pathRequest = new PathRequest(aStarGrid,pathStart, pathEnd, callback);
             _pathRequestQueue.Enqueue(pathRequest);

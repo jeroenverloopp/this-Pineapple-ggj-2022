@@ -52,3 +52,6 @@ TagManager:
   - name: Creatures
     uniqueID: 2685495455
     locked: 0
+  - name: Icons
+    uniqueID: 587289601
+    locked: 0

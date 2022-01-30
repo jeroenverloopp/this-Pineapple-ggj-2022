@@ -4,6 +4,7 @@ namespace Creatures.Behaviour
 {
     public class IdleBehaviour : BaseBehaviour
     {
+        [SerializeField]
         public override int Priority => 1;
         
         public override BehaviourState StateSuggestion => BehaviourState.Idle;

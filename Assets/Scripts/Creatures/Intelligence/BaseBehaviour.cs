@@ -5,7 +5,6 @@ namespace Creatures.Behaviour
 {
     public abstract class BaseBehaviour : MonoBehaviour
     {
-        
         public abstract int Priority { get; }
         public abstract BehaviourState StateSuggestion { get; }
         public abstract bool IsEligibleForActivation { get; }

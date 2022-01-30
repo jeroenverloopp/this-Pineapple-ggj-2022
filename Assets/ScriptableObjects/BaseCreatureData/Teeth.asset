@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cea6c8a6bca67f49987c8428354895c, type: 3}
+  m_Name: Teeth
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 4367407673905216485, guid: e911f05e61616f4498fe7debe41ba5cb, type: 3}
+  _sprites:
+  - State: 0
+    SpriteAnimation: {fileID: 11400000, guid: f4f19d521d9119e4eaec778e60e0d0b5, type: 2}
+  - State: 1
+    SpriteAnimation: {fileID: 11400000, guid: f4f19d521d9119e4eaec778e60e0d0b5, type: 2}
+  - State: 2
+    SpriteAnimation: {fileID: 11400000, guid: 929c77b049bfa31469a8ccc42532cfc5, type: 2}
+  - State: 3
+    SpriteAnimation: {fileID: 11400000, guid: 929c77b049bfa31469a8ccc42532cfc5, type: 2}
+  - State: 4
+    SpriteAnimation: {fileID: 11400000, guid: a5ddd0b752ec31644b5d97132d7caecc, type: 2}
+  - State: 5
+    SpriteAnimation: {fileID: 11400000, guid: 929c77b049bfa31469a8ccc42532cfc5, type: 2}
+  - State: 6
+    SpriteAnimation: {fileID: 11400000, guid: e08182c8a8be490408a82f9cae29e8e6, type: 2}
+  - State: 7
+    SpriteAnimation: {fileID: 11400000, guid: f4f19d521d9119e4eaec778e60e0d0b5, type: 2}
+  Behaviours:
+  - {fileID: 5716145341915161023, guid: a503636c5d3ebce47b79cb57239b7495, type: 3}
+  - {fileID: 9110433843914056637, guid: e816b7583ea65fb47a06856988337c60, type: 3}
+  - {fileID: 9173504384610961632, guid: 67ac2fa7957c58e4fae60b7def89d32d, type: 3}
+  - {fileID: -86540010038852658, guid: 63f4dd9791b372f40b219f039294eed5, type: 3}
+  - {fileID: 543860475459765647, guid: 18976c3841f52ac45a031e243af22c8d, type: 3}
+  - {fileID: 4846018789605895728, guid: 0847300f21aae7446b25835973d61ebb, type: 3}
+  Nutrition: 80
+  TimeToGetEaten: 8
+  MoveSpeed: 1.2
+  MinIdleTime: 2
+  MaxIdleTime: 5
+  IsAfraidOfCreatures: []
+  FleeSpeed: 2
+  MaxFleeDuration: 10
+  FleeCoolDown: 0
+  KeepFleeingAfterLosingPredator: 0
+  RoamRange: 15
+  MinRoamingTime: 5
+  MaxRoamingTime: 25
+  StartHunger: 50
+  HungerGained: 3
+  MaxHunger: 100
+  StartHuntingThreshold: 40
+  HuntingPriorityIncrease: 0.25
+  FindPreyRange: 1.5
+  EatRange: 0.3
+  EatsCreatures:
+  - {fileID: 11400000, guid: 3a84431675253df449819647cf2fc059, type: 2}
+  EatsGround: 
+  BreedingTime: 3
+  BreedingCooldown: 0
+  ReproduceGained: 1
+  CanReproduceThreshold: 40
+  StartReproduce: 0
+  MaxReproduce: 100
+  FindMateRange: 3
+  StartBreedRange: 0.3

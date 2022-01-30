@@ -1,4 +1,5 @@
 ﻿using System;
+using Audio;
 using Core.Singletons;
 using UnityEngine;
 
@@ -21,9 +22,12 @@ namespace Level
         {
             base.Awake();
             Grid = new LevelAStarGrid(_gridPosition, _gridSize, _nodeCount, _tilePrefab);
-            Grid.SetWalkableByCollision(_collisionMask, Mathf.Max(Grid.NodeSize.x,Grid.NodeSize.y)/2);
+            Grid.SetWalkableByCollision(_collisionMask, Mathf.Max(Grid.NodeSize.x,Grid.NodeSize.y));
             Grid.SetNeighbours();
             //Grid.MakeLevelTiles();
+            
+            AudioManager.Instance.Play("BackgroundMusic1");
+            AudioManager.Instance.Play("BackgroundMusic2");
         }
 
 

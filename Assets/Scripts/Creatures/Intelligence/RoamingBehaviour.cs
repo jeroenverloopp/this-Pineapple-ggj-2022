@@ -4,13 +4,14 @@ namespace Creatures.Behaviour
 {
     public class RoamingBehaviour : BaseBehaviour
     {
+        [SerializeField]
         public override int Priority => 1;
         
         public override BehaviourState StateSuggestion => BehaviourState.Roaming;
         
         public override bool IsEligibleForActivation => true;
         
-        
+        [SerializeField]
         private float _durationTimer = 0;
         
         protected override void UpdateWhenActive()
@@ -29,18 +30,23 @@ namespace Creatures.Behaviour
 
         public override void SetActive(bool active)
         {
+            if (active == Active)
+            {
+                return;
+            }
             base.SetActive(active);
             if (Active)
             {
                 _durationTimer = Random.Range(_creatureData.MinRoamingTime, _creatureData.MaxRoamingTime);
-                SetNewTarget();
                 _creature.Movement.OnTargetReached += SetNewTarget;
                 _creature.Movement.OnSetTargetFailed += SetNewTarget;
+                SetNewTarget();
             }
             else
             {
                 _creature.Movement.OnTargetReached -= SetNewTarget;
                 _creature.Movement.OnSetTargetFailed -= SetNewTarget;
+                
             }
         }
 

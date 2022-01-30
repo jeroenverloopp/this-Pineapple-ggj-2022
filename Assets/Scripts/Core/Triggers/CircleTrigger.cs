@@ -16,7 +16,8 @@ namespace Core.Triggers
             return ct;
         }
 
-        public Action<Collider2D> OnTrigger;
+        public Action<Collider2D> OnTriggerEnter;
+        public Action<Collider2D> OnTriggerExit;
 
         private CircleCollider2D _circleCollider;
 
@@ -27,9 +28,14 @@ namespace Core.Triggers
             _circleCollider.radius = radius;
         }
 
-        private void OnTriggerEnter2D(Collider2D colllider)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            OnTrigger?.Invoke(colllider);
+            OnTriggerEnter?.Invoke(collider);
+        }
+        
+        private void OnTriggerExit2D(Collider2D collider)
+        {
+            OnTriggerExit?.Invoke(collider);
         }
     }
 }

@@ -88,7 +88,7 @@ namespace Creatures.Behaviour
 
         private BaseBehaviour FindBehaviourEligibleForActivation()
         {
-            List<BaseBehaviour> foundBehaviours = _behaviourList.Where(x => x.IsEligibleForActivation).ToList();
+            List<BaseBehaviour> foundBehaviours = _behaviourList.Where(x => x.IsEligibleForActivation == true).ToList();
             if (foundBehaviours.Count > 0)
             {
                 foundBehaviours = foundBehaviours.Where(x => x.Priority == foundBehaviours[0].Priority).ToList();
